@@ -1,0 +1,342 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "CHANGES.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "README.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/BASELINE.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/BASELINE_FILES.csv",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/DEPENDENCIES.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/DETAILS.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/DOCUMENTATION_CHECK.json",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/SCENARIO_RELOCATION.json",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/VALIDATION.json",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/BREAD_SLOT.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/GRIPPER_GAINS.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/GRIPPER_SPEED.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/QUEST.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/SCENARIOS_BATCH02.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/SCENARIOS_CURRENT_DELIVERY.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/TOASTER_LED.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "docs/toast_quest/history/TOAST_SUCCESS.md",
+    "reason": "historical/local report or replaced documentation/workflow"
+  },
+  {
+    "path": "source/cyclo_lab/data/motions/K1_rev1/dance1/dance1.npz",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/motions/K1_rev1/dance2/dance2.npz",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/jelly_bag/baked_mesh_603d9417_ao0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/jelly_bag/baked_mesh_603d9417_norm0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/jelly_bag/baked_mesh_603d9417_tex0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/peanut_mix_bag/baked_mesh_c87b43f8_ao0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/peanut_mix_bag/baked_mesh_c87b43f8_norm0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/peanut_mix_bag/baked_mesh_c87b43f8_tex0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/roasted_chestnut_bag/baked_mesh_8315f7dd_ao0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/roasted_chestnut_bag/baked_mesh_8315f7dd_norm0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/object/texture/roasted_chestnut_bag/baked_mesh_8315f7dd_tex0.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz",
+    "reason": "rack redistribution authorization not documented"
+  },
+  {
+    "path": "source/cyclo_lab/data/robots/FFW/FFW_SH5.usd",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/cloud_xr_sessions_control_panel.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/default_srl_pnp.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/franka_kitchen.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/franka_kitchen_pickup.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/g1_galileo_arena_box_pnp_locomanip.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/g1_locomanip_pick_and_place_task_view.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/gr1_open_microwave_task_view.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/gr1_sequential_static_manip_mimic_datagen.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/gr1_sequential_static_manipulation_env.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/gr1_sequential_static_manipulation_env_vr_view.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/isaac_lab_arena_arch_overview.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/isaaclab_arena_core_framework.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/iterate_getting_started_jobs_config.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/kitchen_gr1_arena.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/lift_object_rl_task.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/locomanip_arena_server.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/locomanip_cloudxr_js.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/object_placement_variety.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/relations_highlevel.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/remote_policy_design.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/scale_up.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/simulation_view.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/swap_hdr.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/swap_objects.gif",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/task_duplications.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab-Arena/docs/images/variation_axis.png",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/humanoid_amp/motions/humanoid_dance.npz",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/humanoid_amp/motions/humanoid_run.npz",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/humanoid_amp/motions/humanoid_walk.npz",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/head_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_ankle_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_ankle_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_elbow_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_hip_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_hip_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_hip_yaw_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_knee_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_shoulder_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_shoulder_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_shoulder_yaw_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/left_wrist_roll_rubber_hand.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/pelvis.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_ankle_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_ankle_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_elbow_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_hip_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_hip_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_hip_yaw_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_knee_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_shoulder_pitch_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_shoulder_roll_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_shoulder_yaw_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/right_wrist_roll_rubber_hand.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  },
+  {
+    "path": "third_party/ai_sapiens/ai_sapiens_description/meshes/k1_rev1/torso_link.stl",
+    "reason": "unavailable inherited LFS object (not supplied as a broken pointer)"
+  }
+]

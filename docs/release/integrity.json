@@ -1,0 +1,84 @@
+{
+  "scenario_delivery": {
+    "identical_files": 11,
+    "groups": {
+      "operator_A_1": 25,
+      "operator_B_1": 25,
+      "operator_A_2": 25,
+      "operator_B_2": 25
+    },
+    "manifest_sha256": "e01b22564cb52b7f2e7edf2f8255270bdd9e972702a269b1bc01747dfee5e95e"
+  },
+  "scenario_delivery_base": {
+    "identical_files": 113,
+    "groups": {
+      "operator_B_1": 25,
+      "operator_A_1": 25,
+      "operator_B_2": 25,
+      "operator_A_2": 25
+    },
+    "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+  },
+  "scenario_delivery_base_ptb": {
+    "identical_files": 113,
+    "groups": {
+      "operator_A_1": 25,
+      "operator_B_2": 25,
+      "operator_A_2": 25,
+      "operator_B_1": 25
+    },
+    "manifest_sha256": "11d3bc5d0ec4b05df4422cbc471539012a61b3d8957dcf2ca948ffb025ba9c46"
+  },
+  "launcher_boundary_selections": [
+    {
+      "scenario_group": "operator_A_1",
+      "group_index": 1,
+      "scenario_id": "toast_base_20261109_022",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_A_1",
+      "group_index": 25,
+      "scenario_id": "toast_base_20261109_011",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_A_2",
+      "group_index": 1,
+      "scenario_id": "toast_base_20261109_019",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_A_2",
+      "group_index": 25,
+      "scenario_id": "toast_base_20261109_098",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_B_1",
+      "group_index": 1,
+      "scenario_id": "toast_base_20261109_025",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_B_1",
+      "group_index": 25,
+      "scenario_id": "toast_base_20261109_013",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_B_2",
+      "group_index": 1,
+      "scenario_id": "toast_base_20261109_002",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    },
+    {
+      "scenario_group": "operator_B_2",
+      "group_index": 25,
+      "scenario_id": "toast_base_20261109_093",
+      "manifest_sha256": "31c7399a95df898e53295aa5a78e580ac2c4b36e95bdc1b660314104c424170d"
+    }
+  ],
+  "python_syntax_files": 401,
+  "broken_local_links": []
+}

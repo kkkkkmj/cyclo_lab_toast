@@ -1,0 +1,9 @@
+# Use with docker-compose.yaml and -p cyclo-toast-teleop. Original container untouched.
+name: cyclo-toast-teleop
+services:
+  cyclo_lab:
+    image: cyclo-toast-teleop:isaacsim-5.1.0
+    container_name: cyclo-toast-teleop
+    working_dir: /workspace/cyclo_lab
+    environment:
+      - PYTHONPATH=/workspace/cyclo_lab/source/cyclo_lab:/workspace/cyclo_lab/third_party/IsaacLab/source/isaaclab:/workspace/cyclo_lab/third_party/IsaacLab/source/isaaclab_tasks:/workspace/cyclo_lab/third_party/IsaacLab/source/isaaclab_assets:/workspace/cyclo_lab/third_party/IsaacLab/source/isaaclab_mimic

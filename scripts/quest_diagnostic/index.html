@@ -1,0 +1,195 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Quest controller diagnostic</title>
+<style>body{background:#101c2b;color:#eef;font:20px system-ui;margin:30px}button{font:24px system-ui;padding:20px}pre{white-space:pre-wrap;font-size:15px}</style>
+<h1>Quest Touch Plus input / simulation test</h1>
+<p>Hold both controllers. Enter VR, move each controller and press its buttons.</p>
+<p>VR: Above HEAD, controller connectivity, REC / NO REC and the episode result are separate. SUCCESS is green and remains visible while waiting. Connectivity is distinct from active arm control. See the detailed diagnostics below for input and control verdicts.</p>
+<canvas id="pcPreview" width="1024" height="1024" style="display:block;width:min(100%,850px);height:auto" aria-label="Camera preview with recording status and episode result"></canvas>
+<details><summary>Detailed diagnostics / build · latency · all blocking reasons</summary>
+<p>CLIENT BUILD: <strong id="build">__QUEST_BUILD__</strong></p>
+<p>HUD revision: <strong id="hudRevision"></strong></p>
+<p id="previewStatus">Preview: waiting</p>
+<p>Latest detailed status received in VR. Expand after leaving VR to inspect.</p>
+<pre id="controlDetails">No status received</pre><pre id="status"></pre></details>
+<p id="capabilities">Checking WebXR…</p>
+<form id="pair"><label>PC pairing code (6 digits)<br>
+<input id="code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required style="font:32px monospace;width:9em;padding:12px"></label>
+<button id="pairButton" type="submit">Pair</button></form>
+<p id="pairState">Not paired</p>
+<fieldset id="displayControls"><legend>VR display / Casting adjustment</legend>
+<p>Settings apply on the next VR session. Exit, adjust, then select Enter VR again.</p>
+<label>Mode <select id="hudMode"><option value="normal">Quest default</option><option value="casting">Previous casting</option><option value="cast_fit">Cast fit (fixed default)</option></select></label><br>
+<label>Panel scale <input id="hudScale" type="range" min="0.20" max="0.85" step="0.01" value="0.65"></label><br>
+<label>Horizontal center (− left / + right) <input id="hudX" type="range" min="-0.45" max="0.45" step="0.01" value="0" disabled></label><br>
+<label>Vertical center (− down / + up) <input id="hudY" type="range" min="-0.45" max="0.45" step="0.01" value="0" disabled></label><br>
+<label>Inner video margin (automatic HEAD/WRIST layout) <input id="hudMargin" disabled type="range" min="0" max="0.18" step="0.02" value="0.02"></label><br>
+<label><input id="hudDiagnostic" type="checkbox">TL/TR/BL/BR corners · border (no crosshair over video)</label>
+<p><button id="displayReset" type="button">Restore defaults for this mode</button></p>
+<p>Cast fit packs the complete status, HEAD and both WRIST images into an 832×992 panel with 12px outer margins and an 8px wrist gap. Images retain their aspect ratios and full source area.</p>
+<p>Fixed starting preset: <span id="castFitDefaults"></span>. Positive vertical center moves up by half that value as a fraction of eye viewport height. The actual Meta casting crop is unknown; this preset has not been validated on casting.</p>
+<p>Use this saved preset across sessions without readjusting it each time. Check the status row, HEAD top and both wrist bottoms once on actual casting. If adjustment is needed, retain those final values for confirmation as the next fixed default; avoid filling the width by clipping the bottom.</p>
+<p>Display settings v5 selects the new Cast fit once, leaving old storage keys intact and retaining Quest default/Previous casting profiles. Subsequent mode and slider edits persist at this browser/address. To reset layout only, select Cast fit and Restore defaults for this mode; do not clear site data or Pair settings.</p>
+<p>Exit VR, adjust, and re-enter VR. Slider changes need no server restart, page reload, Pair or address change. Quest default restores the original layout. The PC preview shows the original full-source layout, not the Meta casting crop.</p>
+<p id="displayStorage"></p><pre id="displaySettings"></pre></fieldset>
+<details><summary>Applied XR display / Per-eye rendering details (inspect after leaving VR)</summary><pre id="displayApplied">Not applied yet</pre></details>
+<button id="start" disabled>Enter VR diagnostic</button><p id="message" role="status"></p>
+<script src="/input.js?v=__QUEST_BUILD__"></script><script src="/hud.js?v=__QUEST_BUILD__"></script>
+<script src="/preview_client.js?v=__QUEST_BUILD__"></script>
+<script>
+'use strict';
+const message=document.querySelector('#message'), output=document.querySelector('#status');
+let paired=false, xrReady=false;
+const startButton=document.querySelector('#start');
+function updateStart(){startButton.disabled=!paired||!xrReady||!!session;}
+let session=null, ack=0, busy=false, lastSend=0, seq=0, generation=0;
+const empty=()=>emptyHand();
+const CLIENT_BUILD='__QUEST_BUILD__', previewClient=createPreviewClient();
+document.querySelector('#hudRevision').textContent=HUD_REVISION;
+document.querySelector('#castFitDefaults').textContent=
+  `scale ${CAST_FIT_DEFAULTS.scale.toFixed(2)}, horizontal +${CAST_FIT_DEFAULTS.centerX.toFixed(2)}, vertical +${CAST_FIT_DEFAULTS.centerY.toFixed(2)}`;
+let networkError='waiting for ACK';
+let receivedInputTime=-Infinity;
+let receivedHands={}; // Display-only: last controller slots accepted by the input server.
+const displayControls=document.querySelector('#displayControls');
+const displayValue=id=>document.querySelector(id);
+function requestedDisplay(){return hudSettings({mode:displayValue('#hudMode').value,
+  scale:displayValue('#hudScale').value,margin:displayValue('#hudMargin').value,
+  centerX:displayValue('#hudX').value,centerY:displayValue('#hudY').value,
+  diagnostic:displayValue('#hudDiagnostic').checked});}
+function showDisplay(){
+  const settings=requestedDisplay();
+  displayValue('#hudX').disabled=displayValue('#hudY').disabled=settings.mode==='normal';
+  displayValue('#displaySettings').textContent=HUD_REVISION+' / requested for next VR: '+JSON.stringify(settings);
+}
+const loadedDisplay=loadHUDPreferences();
+const displayPreferences=loadedDisplay.state;
+displayValue('#displayStorage').textContent=loadedDisplay.status;
+function applyDisplayForm(settings){
+  displayValue('#hudMode').value=settings.mode;
+  displayValue('#hudScale').value=settings.scale;displayValue('#hudMargin').value=settings.margin;
+  displayValue('#hudX').value=settings.centerX;displayValue('#hudY').value=settings.centerY;
+  displayValue('#hudDiagnostic').checked=settings.diagnostic;showDisplay();
+}
+function persistDisplay(){
+  const settings=requestedDisplay();displayPreferences.mode=settings.mode;
+  displayPreferences.profiles[settings.mode]=settings;
+  displayValue('#displayStorage').textContent=saveHUDPreferences(displayPreferences);
+}
+displayControls.oninput=event=>{if(event.target.id!=='hudMode'){showDisplay();persistDisplay();}};
+displayValue('#displayReset').onclick=()=>{
+  applyDisplayForm(hudDefaults(displayValue('#hudMode').value));persistDisplay();
+};
+displayValue('#hudMode').onchange=()=>{
+  applyDisplayForm(displayPreferences.profiles[displayValue('#hudMode').value]);persistDisplay();
+};
+applyDisplayForm(displayPreferences.profiles[displayPreferences.mode]);
+let appliedDisplay=null;
+async function send(packet){
+  if(busy)return; busy=true;
+  try{
+    const response=await fetch('/input',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(packet),signal:AbortSignal.timeout(800)});
+    if(response.status===401){paired=false;updateStart();if(session)await session.end();}
+    if(!response.ok)throw Error(await response.text());
+    ack=performance.now();networkError="";receivedHands=packet.controllers||{};receivedInputTime=packet.client_ms;
+  }catch(error){ack=0;networkError=String(error);message.textContent=networkError;}finally{busy=false;}
+}
+async function start(){
+ try{
+  if(!paired||!xrReady)throw Error('Pair and pass WebXR checks first.');
+  persistDisplay();appliedDisplay=null;
+  const s=await navigator.xr.requestSession('immersive-vr',{requiredFeatures:['local-floor']});
+  session=s;displayControls.disabled=true;updateStart();
+  s.addEventListener('end',()=>{session=null;ack=0;displayControls.disabled=false;updateStart();});
+  const canvas=document.createElement('canvas'), gl=canvas.getContext('webgl',{xrCompatible:true});
+  if(!gl)throw Error('WebGL unavailable');
+  await gl.makeXRCompatible();
+  const drawHUD=makeHUD(gl,requestedDisplay());let displayReportAt=-Infinity;previewClient.invalidateDraw();
+  const layer=new XRWebGLLayer(s,gl);s.updateRenderState({baseLayer:layer});
+  const reference=await s.requestReferenceSpace('local-floor');
+  const id=crypto.randomUUID();seq=0;ack=0;
+  reference.addEventListener('reset',()=>{generation++;ack=0;});
+  s.addEventListener('end',()=>{session=null;ack=0;updateStart();
+    // A lost end packet is covered by the receiver's 250 ms timeout.
+    send({session:id,seq:seq++,client_ms:performance.now(),visibility:'ended',controllers:{left:empty(),right:empty()}});
+  });
+  function frame(t,f){
+   s.requestAnimationFrame(frame);
+   const hands=selectControllers(s.inputSources,f,reference,s.visibilityState);
+   const viewer=f.getViewerPose(reference);
+   const q=viewer?.transform.orientation;
+   const previewFresh=previewClient.fresh();
+   gl.bindFramebuffer(gl.FRAMEBUFFER,layer.framebuffer);gl.disable(gl.SCISSOR_TEST);
+   gl.clearColor(.025,.035,.055,1);gl.clear(gl.COLOR_BUFFER_BIT);
+   if(viewer){
+     try{
+       const drawn=drawHUD(viewer.views,layer,hands,
+         ack>0&&performance.now()-ack<250?'ACK OK':networkError||'ACK stale (>250 ms)',
+         previewClient.image(),previewFresh,t,previewClient.state,CLIENT_BUILD,previewClient.teleop(),!Number.isFinite(receivedInputTime)?null:performance.now()-receivedInputTime<250?receivedHands:{});
+       if(t-displayReportAt>1000){
+         displayReportAt=t;appliedDisplay={...drawHUD.info,reported_client_ms:t};
+         displayValue('#displayApplied').textContent=JSON.stringify(appliedDisplay,null,2);
+       }
+       if(drawn)previewClient.markDrawn();else previewClient.invalidateDraw();
+     }catch(error){previewClient.drawError(error);}
+   }else previewClient.invalidateDraw();
+   // Confirmation is sent only AFTER texture upload and draw submission succeed.
+   if(t-lastSend>=33&&!busy){lastSend=t;send({session:id,seq:seq++,client_ms:t,
+     client_protocol:3,client_build:CLIENT_BUILD,
+     xr_display:appliedDisplay,input_sources:diagnosticSources(s.inputSources),
+     reference_generation:generation,visibility:s.visibilityState,controllers:hands,
+     head_quaternion_xyzw:q?[q.x,q.y,q.z,q.w]:null,
+     preview_status:{...previewClient.state,...previewClient.diagnostics()},preview_ok:previewClient.confirmed()&&!!viewer});}
+
+  }
+  s.requestAnimationFrame(frame);
+ }catch(error){message.textContent=String(error);if(session)await session.end();updateStart();}
+}
+
+startButton.onclick=start;
+async function checkCapabilities(){
+ const secure=window.isSecureContext, api=!!navigator.xr;
+ let supported=false, error='';
+ try{
+   const version=await (await fetch('/version',{cache:'no-store'})).json();
+   if(version.server_build!==CLIENT_BUILD||version.disk_build!==CLIENT_BUILD)throw Error('Build mismatch: restart input server and reload page');
+   if(secure&&api)supported=await navigator.xr.isSessionSupported('immersive-vr');
+ }catch(e){error=String(e);}
+ xrReady=secure&&api&&supported;
+ document.querySelector('#capabilities').textContent=
+   `Secure context: ${secure}; WebXR: ${api}; immersive-vr: ${supported}. `+
+   (xrReady?'READY — pair, then enter VR.':'VR BLOCKED. Use Quest Browser and the HTTPS address; check certificate acceptance. ')+error;
+ updateStart();
+}
+document.querySelector('#pair').onsubmit=async(event)=>{
+ event.preventDefault();
+ const button=document.querySelector('#pairButton');button.disabled=true;
+ try{
+  const r=await fetch('/pair',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({code:document.querySelector('#code').value}),signal:AbortSignal.timeout(3000)});
+  const result=await r.json();if(!r.ok)throw Error(result.error);
+  document.querySelector('#code').value='';
+  await poll();
+  if(!paired)throw Error('Pairing cookie was not accepted. Check HTTPS and browser cookie settings.');
+  message.textContent='Paired. Enter VR when capability checks show READY.';
+ }catch(e){message.textContent=String(e);}finally{button.disabled=false;}
+};
+async function poll(){
+ if(session)return;
+ try{
+  const r=await fetch('/status',{signal:AbortSignal.timeout(2000)});
+  paired=r.ok;
+  document.querySelector('#pairState').textContent=paired?'PAIRED (8-hour session)':'Not paired — enter a new PC code';
+  output.textContent=r.ok?JSON.stringify(await r.json(),null,2):'';
+ }catch(e){paired=false;output.textContent=String(e);}
+ updateStart();
+}
+async function pollPreview(){
+ if(!paired)return;
+ await previewClient.poll();
+ drawPCPreview(document.querySelector('#pcPreview'),previewClient.image(),previewClient.teleop(),previewClient.fresh());
+ document.querySelector('#previewStatus').textContent=JSON.stringify(previewClient.state);
+ document.querySelector('#controlDetails').textContent=teleopStatusLines(previewClient.teleop(),previewClient.fresh()).join('\n')+
+   '\n'+JSON.stringify(previewClient.teleop(),null,2);
+}
+checkCapabilities();poll();setInterval(poll,1000);setInterval(pollPreview,100);
+</script></html>
