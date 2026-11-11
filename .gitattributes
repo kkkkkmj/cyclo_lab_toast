@@ -40,3 +40,8 @@ scripts/tools/toast_scenario_geometry.py whitespace=-blank-at-eof
 
 # Immutable generation evidence: preserve original whitespace bytes for SHA256 checks.
 docs/release/generation_sources/*.source -whitespace
+
+# Generated scenario layout cards; keep runtime HTML/JavaScript unchanged.
+scenario_delivery/overview_cards.html linguist-generated=true
+scenario_delivery_base/overview_cards.html linguist-generated=true
+scenario_delivery_base_ptb/overview_cards.html linguist-generated=true
