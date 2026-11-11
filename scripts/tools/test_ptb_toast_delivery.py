@@ -2,6 +2,9 @@
 
 No PhysX, GUI, headset or robot trajectory is executed by these tests.
 """
+from toast_provenance import verify_fingerprint
+from reproduce_toast_generation import reproduce
+
 import ast
 from collections import Counter
 import contextlib
@@ -218,7 +221,7 @@ class PTBDelivery(unittest.TestCase):
             self.assertLessEqual(top.convex_hull.hausdorff_distance(drawn), 2e-6 + np.sqrt(2) * .5e-6 + 1e-12)
         for kind in ('source_sha256', 'asset_sha256', 'existing_manifest_sha256'):
             for path, digest in self.data['provenance'][kind].items():
-                self.assertEqual(gen.shared.sha(gen.ROOT / path), digest, path)
+                verify_fingerprint(path, digest)
 
     def test_png_metadata_sizes_and_sheet_order(self):
         directory = DELIVERY / 'images'
@@ -243,7 +246,7 @@ class PTBDelivery(unittest.TestCase):
     def test_reproduction_in_separate_empty_directory(self):
         with tempfile.TemporaryDirectory(prefix='toast-ptb-reproduce-') as tmp:
             rebuilt = Path(tmp) / 'delivery'
-            with contextlib.redirect_stdout(io.StringIO()): gen.generate(rebuilt)
+            with contextlib.redirect_stdout(io.StringIO()): reproduce('scenario_delivery_base_ptb', rebuilt)
             files = sorted(p.relative_to(rebuilt) for p in rebuilt.rglob('*') if p.is_file())
             self.assertEqual(len(files), 9)
             for name in files:

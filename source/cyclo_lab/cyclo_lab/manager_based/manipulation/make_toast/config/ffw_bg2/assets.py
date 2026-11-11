@@ -48,6 +48,12 @@ def asset_path(name: str) -> str:
     """Resolve only when this task is instantiated, so other tasks need no download."""
     path = (ASSET_DIR.parent / "bread_slot" / "rack.usda" if name == "bread_shelf"
             else ASSET_DIR / name / "object.usdz")
+    if name == "bread_shelf" and not path.with_name("bread_slot.usdz").is_file():
+        raise FileNotFoundError(
+            "Missing required four-groove rack USDZ. Obtain the authorized file and run "
+            "python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz; "
+            "the versioned rack.usda wrapper alone is insufficient. See README.md."
+        )
     if not path.is_file():
         raise FileNotFoundError(
             f"Missing Make Toast asset: {path}\n"

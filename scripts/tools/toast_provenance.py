@@ -1,43 +1,49 @@
-"""Verify generation-time evidence and the explicitly recorded +35 mm migration."""
+"""Separate immutable generation evidence from the executing task's contract.
+
+Source hashes in saved manifests describe generation time, not the current runtime.
+Every archived source must match both the manifest SHA256 and its indexed path.
+Assets are never substituted from the archive: installed bytes must match exactly.
+"""
+import ast
 import hashlib
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PREFIX = 'source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/'
+ARCHIVE = ROOT / 'docs/release/generation_sources'
+
+
+def generation_source(path, expected):
+    """Return exact generation bytes, or fail; never change the expected hash."""
+    index = json.loads((ARCHIVE / 'index.json').read_text())
+    entry = index.get(expected)
+    if entry is None or entry['path'] != path:
+        raise ValueError(f'No path-bound generation source: {path} @ {expected}')
+    source = ARCHIVE / (expected + '.source')
+    raw = source.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != expected:
+        raise ValueError(f'Corrupt generation source: {path}')
+    return raw
+
 
 def verify_fingerprint(path, expected):
-    current = (ROOT / path).read_bytes()
-    if hashlib.sha256(current).hexdigest() == expected:
-        return
-    relocation = json.loads((ROOT / 'docs/toast_quest/SCENARIO_RELOCATION.json').read_text())
-    if path in relocation['sources']:
-        entry = relocation['sources'][path]
-        assert expected == entry['generation_sha256'], f'Generation hash mismatch: {path}'
-        assert hashlib.sha256(current).hexdigest() == entry['current_sha256'], f'Unrecorded relocation edit: {path}'
-        return
-    # Reconstruct generation-time bytes from the exact, reversible migration below.
+    """Verify original generation evidence, independently of runtime evolution."""
+    if path.startswith(('scripts/', 'source/cyclo_lab/cyclo_lab/')):
+        generation_source(path, expected)
+    else:
+        actual = hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+        if actual != expected:
+            raise ValueError(f'Installed asset/input hash mismatch: {path}: {actual} != {expected}')
 
-    replacements = {
-        PREFIX + 'bimanual_env_cfg.py': [
-            ('from .arm_action import StandbyPostureIKActionCfg\n',
-             'from .arm_action import StandbyPostureIKActionCfg\nfrom .toast_parameters import SERVING_POPUP_HEIGHT\n'),
-            ('toast_popup_extra_height: float = .015', 'toast_popup_extra_height: float = SERVING_POPUP_HEIGHT'),
-        ],
-        PREFIX + 'scene.py': [
-            ('from isaacsim.core.utils.stage import get_current_stage\n',
-             'from isaacsim.core.utils.stage import get_current_stage\nfrom .toast_parameters import SERVING_POPUP_HEIGHT\n'),
-            ('Allow a 15 mm high-lift pop-up for the FFW-BG2 fingertip clearance.',
-             'Allow the v2 high-lift target within the physical carriage travel limit.'),
-            ('joint.CreateUpperLimitAttr(.015)', 'joint.CreateUpperLimitAttr(SERVING_POPUP_HEIGHT)'),
-        ],
-    }
-    assert path in replacements, f'Unrecorded provenance change: {path}'
-    before = current.decode()
-    for old, new in reversed(replacements[path]):
-        assert before.count(new) == 1, (path, new)
-        before = before.replace(new, old)
-    assert hashlib.sha256(before.encode()).hexdigest() == expected, f'Unexpected change beyond +35 mm migration: {path}'
-    params = {}
-    exec((ROOT / PREFIX / 'toast_parameters.py').read_text(), params)
-    assert params['SERVING_POPUP_HEIGHT'] == .035
+
+def runtime_contract():
+    """Read the running checkout, not the historical manifest or archived code."""
+    path = ROOT / PREFIX / 'assets.py'
+    tree = ast.parse(path.read_text())
+    radius = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign)
+                  and any(isinstance(t, ast.Name) and t.id == 'SERVING_BREAD_CENTER_RADIUS' for t in n.targets))
+    return dict(schema_version=1, scope='executing_checkout_not_generation_metadata',
+                serving_center_xy_radius_m=radius, serving_center_xy_comparison='strict_less_than',
+                source_sha256={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in sorted((ROOT / PREFIX).glob('*.py'))})

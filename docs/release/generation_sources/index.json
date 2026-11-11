@@ -1,0 +1,193 @@
+{
+  "d4db00ff3600ac2fd342e5c80d4de93f116bee265d5ba1311497058a6a5674e9": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/assets.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 2815
+  },
+  "cbcdb18df7eeea8c2a68247d0ab47307470c6289e1c6b5ed496f573cd1dccb57": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bread_geometry.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 1712
+  },
+  "1dbfb5b59497ff4f7af6f3a55a4bd19463f3a9bc7f0511a4263aef0c2a133462": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bimanual_env.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 8864
+  },
+  "23ec017ca9c82d7e546a853dc455cfb7d06d9cf6d2ed391b700325a9ab6b13ed": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bimanual_mdp.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 6984
+  },
+  "44dae63bb8ab62b8235677a1a1bada484431767fe2f1eae3e2ecda848947bc6c": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/mdp.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 5526
+  },
+  "3a0cb9266e2bbb675d2e5d88c2ba4958e5960091d618aa2ea1523744a2535b15": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/toast_cycle.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 5317
+  },
+  "fe4890b8f33031a34664655439b4571adb5e08b61edcd922f59b6e01b956ffe2": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/lever_indicator.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 3267
+  },
+  "7d0ebe18891415d38ec00cf5c00a04aca51c0bd887f101dd442c41f6347b1ac9": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/scene.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "ba34eae6a7e705e7f6466334e4249e1b9d4ef02b",
+    "bytes": 6147
+  },
+  "bc00cf77181df078975b18eb884b3ee0189bd5f4e43c0c42220a7ade33958514": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 5292
+  },
+  "bdec7cd4555a9f5b9c85fc8403ee05f7fde053a29c08ed0f52916f930c8038fb": {
+    "path": "scripts/tools/generate_current_toast_scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 22146
+  },
+  "c5bdce05ad89257768055d264b6e2bc630893cc38cf1676fa7df1bb38622898c": {
+    "path": "scripts/tools/toast_scenario_geometry.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 5641
+  },
+  "be9fb998a9a7aa5cae51c0c292aa23e24000e58f60542761f5aa7ff185d8a176": {
+    "path": "scripts/tools/view_make_toast_scenario.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 10504
+  },
+  "d4925a757be28877f59045094b6b244a436afdf874e055ea0bb71a94dd8d1e16": {
+    "path": "scripts/quest_diagnostic/teleop_toast.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 27731
+  },
+  "30721d1b0724ba7155c1ea6c016de256d104c5ed08b9405a188bebcb60b89e19": {
+    "path": "scripts/tools/toast_recording_metadata.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 12271
+  },
+  "039e45b53852439e9e067a4446d65003f9d15ea05c4f4106d852ddbe8c445d4e": {
+    "path": "source/cyclo_lab/cyclo_lab/assets/robots/FFW_BG2.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "ba34eae6a7e705e7f6466334e4249e1b9d4ef02b",
+    "bytes": 4146
+  },
+  "58aa35e22417d57d184250690afdb4a59bb5432d8906d1644bfc173dfb7b4c54": {
+    "path": "scripts/tools/generate_base_toast_scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "2b45277e544b12efce0d121baa4b818cbba41662",
+    "bytes": 12078
+  },
+  "d3936ca5bb7b6d6d93efd3f4d4fa89c7685adfa2c26f46795ed0906fea2802c3": {
+    "path": "scripts/tools/generate_current_toast_scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "7dfefa5cc7d1a6fa9801aa006a8e7538a044d99f",
+    "bytes": 21086
+  },
+  "f1e6ad31a7338915ab9166c4a31278b9202488595226b5b44120ca4b3925f660": {
+    "path": "scripts/tools/build_toast_overview_cards.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "2b45277e544b12efce0d121baa4b818cbba41662",
+    "bytes": 7017
+  },
+  "185b3e5fe767a007529214f570dc6039f7399ed8336e2cc8054208c23d8f7bad": {
+    "path": "scripts/tools/toast_overview_cards_template.html",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "7dfefa5cc7d1a6fa9801aa006a8e7538a044d99f",
+    "bytes": 9596
+  },
+  "aaa6cfe0dda6f8a27f2985b000d4f42e47a6704c3d7e6b49d81e591b5809f59e": {
+    "path": "scripts/tools/toast_scenario_geometry.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 5619
+  },
+  "9837abc2540c4b751300ba967ef3f1fb2a3a2386a25a784dc256c4b638fc5929": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bimanual_env_cfg.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 14080
+  },
+  "91f9af11550e69ce96f9ed1916a08d2b56b699ab9b61921d7b302dc7bbbc6f94": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/scene.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "87d971f1cf8ec5799c672f0ee8038c4319f1ab8d",
+    "bytes": 6219
+  },
+  "2db8f5be7512138636805ff91c6412671688721df8db111ebc75248800974a8b": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 5281
+  },
+  "1eac52b8e0d2a4024518ab0579a6be5dc62c309cb0fff9e1e0e3f531e6613529": {
+    "path": "scripts/tools/view_make_toast_scenario.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 10493
+  },
+  "cd962b10089ec39d4e3a284bbbecd75ccf269da5f8f00a9eaae8f0b8f2f8509e": {
+    "path": "scripts/quest_diagnostic/teleop_toast.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 27735
+  },
+  "6c11b16dc0b33dbe569a05d09ff7046f9db6e6e0c8a982606ec3f1631f0d082b": {
+    "path": "scripts/tools/toast_recording_metadata.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 12260
+  },
+  "788b59a4a39f0fff33933f4b76ee1e949f2968c0d597d2ea6b48fc008fa11b0f": {
+    "path": "scripts/tools/generate_ptb_toast_scenarios.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "d8ac88d1175864251a1b705f5975b72c7ffa0d45",
+    "bytes": 15727
+  },
+  "29342f08c333546c386fbe5fc02f7f9ffcb5841316180da9f7426763d3923f93": {
+    "path": "scripts/tools/check_bread_slot_geometry.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f27d24e9d5f264b59a04c4f107ab95d0fb3eb936",
+    "bytes": 7298
+  },
+  "cc8cfa38dde4b7933dbbe8d4292d09fdefd629562fd0486192b328ad64e93232": {
+    "path": "scripts/tools/render_base_scenario_pngs.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "d8ac88d1175864251a1b705f5975b72c7ffa0d45",
+    "bytes": 8161
+  },
+  "01d2ecbd95680cb5fc416c5ad1b68737b78c1f9d394d0066b4eac5e2b9ffef9f": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bimanual_mdp.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "f09bdb631d76fb26f85bb7a7a12919e6549efc99",
+    "bytes": 7155
+  },
+  "0606a4610a63c3cd8bbc85dfcd66aa9e332bf63de325db87f2a7d1359b97b1df": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/pick_place/config/ffw_bg2/pick_place_env_cfg.py",
+    "source_repository": "https://github.com/kkkkkmj/cyclo_lab",
+    "commit": "ba34eae6a7e705e7f6466334e4249e1b9d4ef02b",
+    "bytes": 6973
+  },
+  "8f0bf7e57bea65b074d5038781a84af8a5b64da6d20f55bfcff9ec6dcdd5de12": {
+    "path": "source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/bimanual_env_cfg.py",
+    "reconstruction": "Exact inverse of documented +35mm migration: remove toast_parameters import, replace symbolic popup height with .015. Bytes verified against original manifest SHA256.",
+    "bytes": 14013
+  }
+}

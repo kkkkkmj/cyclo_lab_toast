@@ -42,10 +42,13 @@ def main():
             path = base / 'robodojo_make_toast' / entry['path']
             if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
                 parser.error('Missing/mismatched RoboDojo asset; run scripts/tools/download_make_toast_assets.py: ' + entry['path'])
-        from install_bread_slot import SHA256
+        from install_bread_slot import SHA256, WRAPPER_SHA256
         rack = base / 'bread_slot/bread_slot.usdz'
         if not rack.is_file() or hashlib.sha256(rack.read_bytes()).hexdigest() != SHA256:
             parser.error('Obtain authorized rack and run scripts/tools/install_bread_slot.py; see README')
+        wrapper = rack.with_name('rack.usda')
+        if not wrapper.is_file() or hashlib.sha256(wrapper.read_bytes()).hexdigest() != WRAPPER_SHA256:
+            parser.error('Missing/mismatched rack.usda: run git lfs pull and git lfs fsck')
         print('Local asset hashes verified; NVIDIA cloud materials and GPU loading remain unverified')
     print('PASS: three manifests, four groups x 25, eight launcher boundary plans, Python syntax')
 

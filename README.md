@@ -4,7 +4,7 @@
 
 An **Isaac Sim toast preparation task environment** with **Meta Quest bimanual and gripper teleoperation**, demonstration collection, and reproducible scenario execution. This project is based on [ROBOTIS-GIT/cyclo_lab](https://github.com/ROBOTIS-GIT/cyclo_lab) and extends the toast environment in [badajhong/cyclo_lab](https://github.com/badajhong/cyclo_lab). The existing environment framework, robots, IK and recorder infrastructure belong to their upstream authors; this package integrates local toast, Quest, scenario and recording extensions.
 
-**Release status:** CPU validation is documented in [validation](docs/release/VALIDATION.md). GPU/Quest operation and a fresh Docker build have not been verified for this release. The four-groove rack requires an independently authorized asset file before simulation can run; its redistribution permission was not present in the source checkout. Ctrl+C leaving Isaac Sim alive has been reported again and remains unresolved. This is not a fully validated turnkey release.
+**Release status:** CPU validation is documented in [validation](docs/release/VALIDATION.md). GPU/Quest operation and a fresh Docker build have not been verified for this release. **A clone alone is insufficient:** the four-groove rack requires an independently authorized exact asset file, RoboDojo assets require the pinned downloader, and NVIDIA table/materials require cloud access. Rack redistribution permission is still unconfirmed; cloud dependency loading is unverified. See the [asset acquisition/rights checklist](docs/release/ASSETS.md). Ctrl+C leaving Isaac Sim alive has been reported again and remains unresolved. This is not a fully validated turnkey release.
 
 ## Upstream Projects and Attribution
 
@@ -28,7 +28,7 @@ git lfs fsck
 git submodule update --init --recursive
 ```
 
-The four `third_party/` dependencies are vendored source snapshots, not gitlinks. `.gitmodules` preserves their upstream URLs; the submodule command is currently a no-op. Do not replace them with upstream `main`. Missing inherited LFS media and unrelated robot/motion assets are enumerated in [the exclusion inventory](docs/release/exclusions.json); they are not silently published as broken pointers.
+The four `third_party/` dependencies are vendored source snapshots, not gitlinks. `.gitmodules` preserves their upstream URLs; the submodule command is currently a no-op. Do not replace them with upstream `main`. The 66 formerly missing inherited LFS objects were recovered and hash-verified locally, but remain excluded as unrelated to toast. See the [per-object audit](docs/release/lfs_audit.json); this is not remote LFS verification.
 
 Read the [asset terms and acquisition procedure](docs/release/PROVENANCE.md) before obtaining external assets:
 
@@ -131,7 +131,7 @@ recordings/quest_base_B1/episode_001/run_DATE_TIME_UUID/
       episode.json, video.mp4, video.json, frames.jsonl
 ```
 
-The **outer episode_001** is scenario group index 1. **Inner episode_000001** is an accepted demonstration attempt within that run. HDF5 labels and episode result use the same pre-reset outcome policy. Diagnostic/training-readiness flags are retained: observed success does not establish training quality or action-replay fidelity. Waiting frames are not demonstrations. Keep the full run together.
+The **outer episode_001** is scenario group index 1. **Inner episode_000001** is an accepted demonstration attempt within that run. HDF5 labels and episode result use the same pre-reset outcome policy. New metadata separates `generation_contract` (historical layout provenance, including its 20mm record) from `runtime_contract` (the executing checkout, currently strict <40mm). Diagnostic/training-readiness flags are retained: observed success does not establish training quality or action-replay fidelity. Waiting frames are not demonstrations. Keep the full run together.
 
 MP4 is a HEAD/LEFT WRIST/RIGHT WRIST RGB atlas. New videos use **25fps wall-clock playback** with sample-and-hold frames, not interpolation. “1×” means monotonic wall-clock duration; it does **not** guarantee real-time simulation. HDF5 simulation/action timing is unchanged. Legacy conversion preserves original files:
 
@@ -172,3 +172,35 @@ See [release validation](docs/release/VALIDATION.md) for exact tests, failures a
 ## License and Acknowledgments
 
 See [LICENSE](LICENSE), [LICENSE-IsaacLab](LICENSE-IsaacLab), [third-party notices](THIRD_PARTY_LICENSES.md) and [asset/provenance audit](docs/release/PROVENANCE.md). Credit ROBOTIS, badajhong, NVIDIA/Isaac Lab, RoboDojo and all preserved source copyright holders. External asset rights are not replaced by the code license.
+
+### Diagnosing a simulator that remains alive after Ctrl+C
+
+The application can remain blocked in native code or Kit cleanup. This remains
+an open issue, independent of the CPU signal-relay tests. Preserve the run folder
+and inspect `SHUTDOWN_WAIT`, the recovery log named by `MJ_RUN`, and the exact
+container name printed by that same launch. Do not identify a session by a broad
+process name or stop every Compose container.
+
+```bash
+# Replace with the exact container from YOUR run's MJ_RUN line.
+export RUN_CONTAINER=exact-container-name-from-your-run
+# Read-only inspection; run these only after setting the exact name.
+docker inspect --format '{{.Name}} {{.State.Status}}' "$RUN_CONTAINER"
+docker logs --tail 100 "$RUN_CONTAINER"
+```
+
+If the original console is still responsive, enter `q` and allow finalization.
+If it is not, an operator may resend SIGINT to that container's registered Python
+PID after confirming its identity:
+
+```bash
+docker exec "$RUN_CONTAINER" sh -c \
+  'read -r pid < /tmp/cyclo-mj-python.pid; case "$pid" in ""|*[!0-9]*) exit 2;; esac; kill -INT "$pid"'
+```
+
+A native hang may still prevent cleanup. As a **last resort chosen by the
+operator**, `docker stop --time 60 "$RUN_CONTAINER"` sends TERM and eventually
+KILL to this one container. That can lose buffered HDF5/MP4 data: preserve all
+existing run files, treat interrupted outputs as incomplete and inspect them
+before use. This is recovery guidance, not a shutdown fix; no such command was
+run against an existing session during release preparation.

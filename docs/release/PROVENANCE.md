@@ -26,7 +26,7 @@ The public ROBOTIS project also identifies Apache-2.0 and BSD-3-Clause licenses.
 | RoboDojo toaster, bread, plate and legacy shelf | Not republished; fetch using `python3 scripts/tools/download_make_toast_assets.py`. `asset_manifest.json` pins revision `63fcc045f2e974902eb7800d29de48004cf86016` and every SHA256/size. The manifest and [official dataset page](https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/main) identify Apache-2.0. Review upstream terms for your use; no demonstration/training dataset download is needed. |
 | Four-groove rack `bread_slot.usdz` | Source record only says it was copied from Downloads. Author, original URL and redistribution grant are absent. The binary is excluded and ignored. Obtain the exact file and permission directly from its rights holder; no public authorized download URL has been established. Run `python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz`. Required SHA256: `338eb23d759224c0686857b3e793070b2bf03f9c7fe25f872a3c598bd67330d8`. Hash verification proves identity, **not permission**. The wrapper `rack.usda`, offsets, tests and scenario poses are preserved. Until the file is lawfully acquired, simulation and mesh geometry checks are blocked. |
 | Packing table | NVIDIA Isaac Sim configured cloud asset root + `/Isaac/Props/PackingTable/packing_table.usd`; fetched by Isaac Sim under NVIDIA terms, including referenced materials. Not bundled. |
-| Other inherited missing LFS assets | 66 unavailable source pointers enumerated in `missing-lfs.json`, principally unrelated robot/food textures, motion and documentation media. Excluded instead of falsely claiming they can be fetched from the new repository. This release supports the toast workflow, not every inherited upstream example. |
+| Other inherited missing LFS assets | 66 initially unavailable source pointers enumerated in `missing-lfs.json`; all have now been recovered and hash-verified in isolated audit storage (see `lfs_audit.json`), principally unrelated robot/food textures, motion and documentation media. Excluded because they are unrelated to toast; they are not published as unresolved pointers. This release supports the toast workflow, not every inherited upstream example. |
 
 Downloaded RoboDojo and rack files used for local CPU validation are ignored and are not part of the commit or Docker publication. A new lab must independently obtain them. No small substitute mesh, altered physics or relaxed success tolerance was introduced to hide missing assets.
 
@@ -56,3 +56,39 @@ The base shared gripper defaults 2.2 rad/s and slave gains 2/0.5 are overridden 
 - Updated a loop test fixture with the cooperative `shutdown.requested=False` object introduced in the latest implementation. No runtime shutdown or physics code is modified.
 
 Known code/documentation distinctions: v2 needs at least one cooked/served ID despite an inherited “both slices” class docstring; 90% entry threshold differs from the shared 85% pressed predicate. Neither was changed to match a prose checklist.
+
+For the updated rights-holder checklist, installer behavior, all 66 LFS results and incomplete cloud/MDL closure, see [asset audit](ASSETS.md).
+
+## Historical generation source bundle
+
+`generation_sources/index.json` binds each preserved source SHA256 to its original
+path and the exact source Git commit containing those bytes. The one pre-35mm
+configuration absent from the available Git objects is reconstructed by the
+previously documented inverse migration; its bytes match the original manifest
+SHA256 exactly. These files retain their original contents and notices. No saved
+manifest hash was replaced with a current hash.
+
+`verify_fingerprint` now checks **generation evidence**, not an assertion that
+current runtime source is identical. Source evidence is read from the path-bound,
+SHA256-checked archive; asset hashes still require the actual installed bytes and
+never fall back to a source archive. Current control/task semantics are checked
+separately by `current_contract`, serving-success/gain/LED tests and the new
+runtime metadata tests. The historical 20mm value must not control the current
+40mm task.
+
+The base/PTB historical reproduction tool creates a temporary independent tree,
+overlays exact archived generation sources, copies only checksum-verified assets,
+and runs the original generator. It never mutates the current runtime or original
+scenario files and never consults a developer repository or Git cache:
+
+```bash
+python3 scripts/tools/reproduce_toast_generation.py \
+  --set scenario_delivery_base_ptb --output /tmp/new-ptb-generation
+```
+
+The output must be new/empty. PTB's nine generated files are compared byte-for-byte
+with the saved delivery, including metadata; no assertion is removed or ignored.
+The source bundle includes the older other-set fingerprints for evidence
+verification, but only fixed base/PTB generation is exposed by this tool. External
+rack authorization and the pinned USD assets remain prerequisites. CPU dependency
+versions used for the new validation are recorded in `cpu_environment.json`.

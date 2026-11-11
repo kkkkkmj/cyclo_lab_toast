@@ -27,11 +27,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--destination", type=Path, default=DEFAULT_DESTINATION)
     args = parser.parse_args()
-    manifest = json.loads(MANIFEST.read_text())
+    try:
+        download(json.loads(MANIFEST.read_text()), args.destination)
+    except (OSError, ValueError, RuntimeError) as error:
+        parser.exit(2, f'Asset acquisition failed: {error}\nNo unverified file was installed; check network/access and retry.\n')
+
+
+def download(manifest, destination):
+    destination = Path(destination)
     base = (f"https://huggingface.co/datasets/{manifest['repository']}/resolve/"
             f"{manifest['revision']}")
     for entry in manifest["files"]:
-        target = args.destination / entry["path"]
+        target = destination / entry["path"]
         if target.is_file() and digest(target) == entry["sha256"]:
             print(f"Verified: {target}")
             continue
@@ -49,7 +56,7 @@ def main():
             print(f"Downloaded: {target}")
         finally:
             Path(temporary).unlink(missing_ok=True)
-    print(f"Make Toast assets ready: {args.destination.resolve()}")
+    print(f"Make Toast assets ready: {destination.resolve()}")
 
 
 if __name__ == "__main__":

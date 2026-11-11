@@ -65,6 +65,11 @@ def create_diagnostic(directory, manifest, operator, scenario_id, scenario_index
                     record_directory=str(Path(directory).resolve()))
     def git(*args):
         return subprocess.check_output(['git','-c',f'safe.directory={ROOT.resolve()}',*args],cwd=ROOT,text=True).strip()
+    from toast_provenance import runtime_contract
+    metadata['runtime_contract'] = runtime_contract()
+    metadata['generation_contract'] = dict(scope='historical_layout_generation_only',
+        environment_contract=data.get('environment_contract'),
+        provenance=data.get('provenance'))
     metadata['code_version']=dict(commit=git('rev-parse','HEAD'),
                                   dirty=bool(git('status','--porcelain')),
                                   tracked_diff_sha256=hashlib.sha256(git('diff','HEAD').encode()).hexdigest())

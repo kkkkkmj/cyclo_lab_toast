@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "scope": "recursive USD asset dependencies; no PhysX or renderer",
+  "table": {
+    "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Props/PackingTable/packing_table.usd",
+    "status": "NOT_ACQUIRED_NOT_RECURSIVELY_VERIFIED"
+  },
+  "roots": [
+    {
+      "path": "source/cyclo_lab/data/robots/FFW/FFW_BG2_without_mimic.usd",
+      "sha256": "82ac39486428e51d8be58996ea817fd4b25a40c262936e2d2cc8823673e1387d",
+      "layers": [
+        "source/cyclo_lab/data/robots/FFW/FFW_BG2_without_mimic.usd"
+      ],
+      "assets": [],
+      "unresolved": [
+        "OmniPBR.mdl"
+      ]
+    },
+    {
+      "path": "source/cyclo_lab/data/objects/robodojo_make_toast/toaster/object.usdz",
+      "sha256": "0d80971f2a3d310e2fc65bc6ad624bab9866303099038ecbef91fe37b02e8e82",
+      "layers": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/toaster/object.usdz"
+      ],
+      "assets": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/toaster/object.usdz[SubUSDs/materials/OmniPBR.mdl]"
+      ],
+      "unresolved": [],
+      "package_members": [
+        "main.usdc",
+        "SubUSDs/materials/OmniPBRBase.mdl",
+        "SubUSDs/materials/OmniPBR_ClearCoat.mdl",
+        "SubUSDs/materials/OmniPBR.mdl"
+      ]
+    },
+    {
+      "path": "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz",
+      "sha256": "c63472e16a20fb12e856d89c4f92e33546677285124838766c6555f8abfbf473",
+      "layers": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz"
+      ],
+      "assets": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz[SubUSDs/textures/extracted_image_0.jpg]",
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz[SubUSDs/textures/extracted_image_1.jpg]",
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz[SubUSDs/textures/extracted_image_2.jpg]",
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz[SubUSDs/textures/extracted_image_3.jpg_metallic.png]",
+        "source/cyclo_lab/data/objects/robodojo_make_toast/plate/object.usdz[SubUSDs/textures/extracted_image_3.jpg_roughness.png]"
+      ],
+      "unresolved": [],
+      "package_members": [
+        "temp.usdc",
+        "SubUSDs/textures/extracted_image_1.jpg",
+        "SubUSDs/textures/extracted_image_2.jpg",
+        "SubUSDs/textures/extracted_image_3.jpg_roughness.png",
+        "SubUSDs/textures/extracted_image_3.jpg_metallic.png",
+        "SubUSDs/textures/extracted_image_0.jpg"
+      ]
+    },
+    {
+      "path": "source/cyclo_lab/data/objects/robodojo_make_toast/bread/object.usdz",
+      "sha256": "e3a1e5796c033de3c1b29e28e1a13e03e2e60725884d9a071326cd9397f33839",
+      "layers": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/bread/object.usdz"
+      ],
+      "assets": [
+        "source/cyclo_lab/data/objects/robodojo_make_toast/bread/object.usdz[SubUSDs/textures/toast-bread-4833482_1920.jpg]"
+      ],
+      "unresolved": [
+        "gltf/pbr.mdl"
+      ],
+      "package_members": [
+        "main.usdc",
+        "SubUSDs/textures/toast-bread-4833482_1920.jpg"
+      ]
+    },
+    {
+      "path": "source/cyclo_lab/data/objects/bread_slot/rack.usda",
+      "sha256": "bf9d759dba0cc619eda5483bfba87db934e2b7ae1c4ac86af833cfaa5323dd52",
+      "layers": [
+        "source/cyclo_lab/data/objects/bread_slot/rack.usda",
+        "source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz"
+      ],
+      "assets": [],
+      "unresolved": []
+    }
+  ],
+  "complete_runtime_closure_verified": false
+}

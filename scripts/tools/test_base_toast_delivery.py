@@ -1,4 +1,6 @@
 """CPU checks for the fixed-base corpus; no PhysX, GUI, VR or reachability claim."""
+from toast_provenance import verify_fingerprint
+
 import csv
 from collections import Counter
 import hashlib
@@ -149,8 +151,8 @@ class BaseDelivery(unittest.TestCase):
             top=cards.project(parts['bread_shelf'],e['poses']['bread_shelf'],top=True)
             drawn_top=MultiPoint(path_points(card['rack_top'])).convex_hull
             self.assertLessEqual(top.convex_hull.hausdorff_distance(drawn_top),2e-6+np.sqrt(2)*.5e-6+1e-12)
-        for path,digest in self.data['provenance']['source_sha256'].items():self.assertEqual(gen.shared.sha(ROOT/path),digest,path)
-        for path,digest in meta['asset_sha256'].items():self.assertEqual(gen.shared.sha(ROOT/path),digest,path)
+        for path,digest in self.data['provenance']['source_sha256'].items():verify_fingerprint(path, digest)
+        for path,digest in meta['asset_sha256'].items():verify_fingerprint(path, digest)
 
 
 if __name__=='__main__':unittest.main()

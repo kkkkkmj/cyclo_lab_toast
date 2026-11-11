@@ -37,3 +37,6 @@ source/cyclo_lab/data/objects/bread_slot/*.usdz filter=lfs diff=lfs merge=lfs -t
 *.csv whitespace=cr-at-eol
 # Unified diff context lines and the hashed generator snapshot are evidence.
 scripts/tools/toast_scenario_geometry.py whitespace=-blank-at-eof
+
+# Immutable generation evidence: preserve original whitespace bytes for SHA256 checks.
+docs/release/generation_sources/*.source -whitespace
