@@ -37,6 +37,7 @@ Read the [asset terms and acquisition procedure](docs/release/PROVENANCE.md) bef
 python3 scripts/tools/download_make_toast_assets.py
 # Obtain this exact file and permission from the rack rights holder first.
 python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz
+python3 scripts/tools/check_release.py --assets
 ```
 
 The rack installer verifies SHA256 and refuses a different geometry; no generic substitute is used. NVIDIA's packing-table USD and materials are resolved from the configured Isaac Sim asset cloud at runtime, subject to NVIDIA terms and network access. No local backup or original development folder is required.

@@ -195,7 +195,7 @@ are unverified. Rejection filters and balanced assignments must not be interpret
 Download and open the card HTML directly, or serve the checkout:
 
 ```bash
-export REPO=/path/to/cyclo_lab_toast_quest
+export REPO=/path/to/cyclo-toast-teleop
 cd "$REPO"
 python3 -m http.server 8000 --bind 127.0.0.1
 ```

@@ -1,0 +1,65 @@
+{
+  "runtime": "V8 tool JavaScript runtime; no DOM or physical headset",
+  "results": [
+    {
+      "name": "runHUDTests",
+      "count": 7
+    },
+    {
+      "name": "runHUDRenderTests",
+      "error": "ReferenceError: document is not defined"
+    },
+    {
+      "name": "runHUDPersistenceTests",
+      "count": 8
+    },
+    {
+      "name": "runHUDMigrationTests",
+      "count": 6
+    },
+    {
+      "name": "runControlStatusTests",
+      "count": 6
+    },
+    {
+      "name": "runCompactStatusTests",
+      "count": 6
+    },
+    {
+      "name": "runCameraConnectionTests",
+      "count": 8
+    },
+    {
+      "name": "runDenseLayoutTests",
+      "count": 5
+    },
+    {
+      "name": "runNativeRecordingTests",
+      "count": 7
+    },
+    {
+      "name": "runEpisodeResultTests",
+      "count": 10
+    },
+    {
+      "name": "runFixedStatusLayoutTests",
+      "error": "ReferenceError: document is not defined"
+    },
+    {
+      "name": "runStatusViewportTests",
+      "count": 76
+    },
+    {
+      "name": "runCastFitTests",
+      "count": 54
+    },
+    {
+      "name": "runCompactCastingTests",
+      "error": "ReferenceError: document is not defined"
+    },
+    {
+      "name": "runFixedPresetTests",
+      "count": 22
+    }
+  ]
+}

@@ -155,7 +155,7 @@ See [distribution.json](distribution.json) for the actual statistics.
 
 This package provides fixed layouts and code to apply them. The viewer is for scene inspection and
 does not save demonstrations. Selecting an operator or group does not start data collection.
-The Quest task ID is `Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2`; `toast-quest` is the Git branch name.
+The Quest task ID is `Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2`; `main` is the distribution branch name.
 
 For custom collection code, set the selected ID and manifest **before `gym.make()`**, after initializing
 Isaac Sim and registering the task:
@@ -178,7 +178,7 @@ env = gym.make(task, cfg=cfg)
 This is an integration example, not a claim that every recorder accepts these CLI options.
 Existing group selection resolves operator/scenario_index for the Quest recorder and stores the group,
 group index, parent index, actual ID and manifest SHA256. Optional Quest `--record-dir` produces
-**diagnostic=true, success=false** HDF5 with metadata and a manifest snapshot; it is not a verified
+HDF5 with **diagnostic=true** and the observed task success label with metadata and a manifest snapshot; it is not a verified
 successful training demonstration. Saved-state video also does not establish action-replay fidelity.
 
 ## Validation
@@ -186,8 +186,7 @@ successful training demonstration. Saved-state video also does not establish act
 The supplied 100 IDs are unique, with 25 per group and 50 per operator. CPU checks matched all 200
 group/parent selections, 100 metadata round trips, 700 pose CSV rows, and 100 card entries.
 These checks do not establish PhysX stability, robot reachability or full toast-task success.
-The current rack's settling remains under diagnosis. Historical reports are linked from
-[the reference index](../README.md); they are not included in this scenario data folder.
+The current rack's settling remains under diagnosis. See [release validation](../docs/release/VALIDATION.md) for current checks; personal historical measurement reports are not distributed.
 
 ## Files
 
@@ -204,7 +203,7 @@ Download the card HTML and open it in a web browser. It is self-contained and do
 connection. GitHub's file view does not run it. Alternatively serve the checkout locally:
 
 ```bash
-export REPO=/path/to/cyclo_lab_toast_quest
+export REPO=/path/to/cyclo-toast-teleop
 cd "$REPO"
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
