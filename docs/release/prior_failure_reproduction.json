@@ -1,0 +1,35 @@
+[
+  {
+    "suite": "test_current_toast_delivery",
+    "baseline_commit": "6f713f07dd37127c76ac48520c5ee5f4d383b81a",
+    "failures": [
+      "test_preserved_source_and_asset_fingerprints (__main__.Delivery.test_preserved_source_and_asset_fingerprints)"
+    ],
+    "private_log_sha256": "c43d0cf11987c89fab79e1aead7dec8537a63041632683327b2fd882b8d2383e"
+  },
+  {
+    "suite": "test_base_toast_delivery",
+    "baseline_commit": "6f713f07dd37127c76ac48520c5ee5f4d383b81a",
+    "failures": [
+      "test_card_payload_and_direct_current_mesh_projection (__main__.BaseDelivery.test_card_payload_and_direct_current_mesh_projection)"
+    ],
+    "private_log_sha256": "f1b77c7df0208a29201cc4bfb21900d11503c03908b5b93f0b4170726e3cf06c"
+  },
+  {
+    "suite": "test_ptb_toast_delivery",
+    "baseline_commit": "6f713f07dd37127c76ac48520c5ee5f4d383b81a",
+    "failures": [
+      "test_assignments_pose_csv_and_current_mesh_cards (__main__.PTBDelivery.test_assignments_pose_csv_and_current_mesh_cards)",
+      "test_reproduction_in_separate_empty_directory (__main__.PTBDelivery.test_reproduction_in_separate_empty_directory)"
+    ],
+    "private_log_sha256": "66cf681be3dbe9c84de1684ae287076d5fb21bf799f3ee3506325d36294d63e3"
+  },
+  {
+    "suite": "test_toast_collection_validation",
+    "baseline_commit": "6f713f07dd37127c76ac48520c5ee5f4d383b81a",
+    "failures": [
+      "test_current_vr_selection_coverage (__main__.AuditTests.test_current_vr_selection_coverage)"
+    ],
+    "private_log_sha256": "9ca9b46defd85c2ad6005dc5e3b5aa89a794caffecac0985d8bb4598e1852cb1"
+  }
+]

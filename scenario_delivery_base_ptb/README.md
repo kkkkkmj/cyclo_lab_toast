@@ -103,10 +103,10 @@ relationships. The known rack-settling issue remains unresolved.
 Generation seed: **2026110901**. Assignment seed: **2026110902**. The
 [generator](../scripts/tools/generate_ptb_toast_scenarios.py) refuses a nonempty output directory.
 It reads tracked calibration/evidence and duplicate signatures from the two existing manifests,
-plus current assets and shared tools. It never writes to those sets.
+plus the installed checksum-pinned assets. For historical byte reproduction, the command below uses archived generation sources with the original 20mm metadata; current runtime remains strict <40mm. It never writes to those sets.
 
 Run from the checkout root with a CPU Python environment containing NumPy, SciPy, torch, OpenUSD
-`pxr`, Shapely 2.x, Matplotlib and Pillow. Tested versions were Python 3.12.14, NumPy 2.5.1,
+`pxr`, Shapely 2.x, Matplotlib and Pillow. Historical generation notes listed Python 3.12.14, NumPy 2.5.1,
 SciPy 1.17.0, torch 2.11.0+cu128, usd-exchange 2.3.0 (OpenUSD 0.25.5), Shapely 2.1.2,
 Matplotlib 3.10.8 and Pillow 12.2.0. This is separate from the simulator's Python environment.
 The [dependency guide](../README.md) describes runtime dependencies and
@@ -115,8 +115,8 @@ asset downloads. `TOAST_PYTHON` below must point to your prepared CPU interprete
 ```bash
 export TOAST_PYTHON=python3
 PTB_OUTPUT=$(mktemp -d /tmp/toast-ptb-rebuild.XXXXXX)
-"$TOAST_PYTHON" scripts/tools/generate_ptb_toast_scenarios.py \
-  --seed 2026110901 --assignment-seed 2026110902 --output "$PTB_OUTPUT"
+"$TOAST_PYTHON" scripts/tools/reproduce_toast_generation.py \
+  --set scenario_delivery_base_ptb --output "$PTB_OUTPUT"
 "$TOAST_PYTHON" scripts/tools/render_base_scenario_pngs.py \
   --delivery "$PTB_OUTPUT" --output "$PTB_OUTPUT/images"
 "$TOAST_PYTHON" scripts/tools/test_ptb_toast_delivery.py -v
@@ -258,3 +258,5 @@ export TOAST_PYTHON=python3
 The renderer checks fresh geometry against the saved HTML, assignments and all pose rows before
 rendering. It leaves the manifest, CSVs and HTML unchanged. PNG metadata records IDs, the manifest
 hash and common coordinate bounds; individual PNGs also contain exact poses and group indices.
+
+Current release CPU versions and fresh independent-clone results are recorded in [release validation](../docs/release/VALIDATION.md) and [cpu_environment.json](../docs/release/cpu_environment.json).

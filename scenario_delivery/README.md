@@ -107,9 +107,8 @@ Existing delivery outputs are refused. Generation checks the current baseline/as
 using prior pose-signature hashes from `inputs/generation_history.json` for duplicate exclusion.
 The test command checks the supplied delivery, not the temporary regenerated output.
 The saved manifest records generation-time +15 mm sources; current +35 mm sources and output changes
-produce different provenance hashes. Pose/assignment reproduction is distinct from byte-for-byte file
-reproduction. Historical manifest hashes remain unchanged; reviewed current source hashes are recorded
-in [the provenance/relocation record](../docs/toast_quest/SCENARIO_RELOCATION.json).
+and current 40mm runtime metadata produce different provenance hashes. Pose/assignment reproduction is distinct from byte-for-byte file
+reproduction. Historical manifest hashes remain unchanged. Exact path-bound generation source evidence is retained in [the generation source index](../docs/release/generation_sources/index.json); the [relocation record](../docs/toast_quest/SCENARIO_RELOCATION.json) describes the earlier migration only. It is not a current runtime fingerprint.
 
 ## Installation and operation
 

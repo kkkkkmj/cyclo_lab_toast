@@ -1,5 +1,5 @@
 {
-  "runtime": "V8 tool JavaScript runtime; no DOM or physical headset",
+  "runtime": "Fresh clean-clone sources executed in V8; no DOM, renderer or headset",
   "results": [
     {
       "name": "runHUDTests",

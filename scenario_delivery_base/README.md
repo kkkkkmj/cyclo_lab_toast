@@ -89,21 +89,19 @@ Run from the checkout root with Python containing numpy, scipy, torch, pxr (USD)
 ```bash
 export TOAST_PYTHON=python3
 MJ_BASE_OUTPUT=$(mktemp -d /tmp/toast-base-rebuild.XXXXXX)
-"$TOAST_PYTHON" scripts/tools/generate_base_toast_scenarios.py \
-  --seed 20261109 --assignment-seed 20261110 --output "$MJ_BASE_OUTPUT"
+"$TOAST_PYTHON" scripts/tools/reproduce_toast_generation.py \
+  --set scenario_delivery_base --output "$MJ_BASE_OUTPUT"
 "$TOAST_PYTHON" scripts/tools/test_base_toast_delivery.py
 ```
 
-The CPU reproduction used Python 3.12.14, numpy 2.5.1, scipy 1.17.0, torch 2.11.0+cu128,
+The original generation notes recorded Python 3.12.14, numpy 2.5.1, scipy 1.17.0, torch 2.11.0+cu128,
 USD 0.25.5 and Shapely 2.1.2. All nine generated files matched byte-for-byte in a separate temporary
 folder in that environment; other library versions may change geometry serialization or allocation
 roundoff. This CPU environment is separate from the simulator environment below.
 The test command checks the checked-in delivery, not the temporary output.
 
 Generation reads the original delivery's baseline, geometry evidence and duplicate signatures,
-all tracked in this branch. It uses current asset geometry and shared tools under `scripts/tools/`;
-no personal directory or untracked file is required. Current source/asset hashes are recorded in the
-manifest. The two files in `inputs/` retain the authored geometry evidence and table snapshot.
+all tracked in this branch. The reproduction wrapper uses the exact SHA256-verified archived generation sources and installed pinned assets; no original worktree is consulted. The saved source/asset hashes describe generation time, including the historical 20mm radius, not the current strict 40mm runtime. The authorized external rack and downloaded object assets are prerequisites. The two files in `inputs/` retain the authored geometry evidence and table snapshot.
 
 ## Installation and operation
 
@@ -244,3 +242,5 @@ The renderer rebuilds the shared HTML geometry in a temporary directory, verifie
 cards and current assets, and checks all 700 pose CSV rows and 100 assignments before rendering.
 It does not modify the manifest, assignments, poses or existing HTML. PNG metadata records the selected
 IDs, manifest hash and common coordinate bounds; individual PNGs also contain the exact object poses.
+
+Current release CPU versions and fresh independent-clone results are recorded in [release validation](../docs/release/VALIDATION.md) and [cpu_environment.json](../docs/release/cpu_environment.json).

@@ -2,235 +2,370 @@
   {
     "test": "scripts/quest_diagnostic/test_analyze_interruptions.py",
     "exit_code": 0,
-    "seconds": 0.12,
-    "test_count": 13
+    "test_count": 13,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.12
   },
   {
     "test": "scripts/quest_diagnostic/test_auto_contact.py",
     "exit_code": 0,
-    "seconds": 0.18,
-    "test_count": 4
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.19
   },
   {
     "test": "scripts/quest_diagnostic/test_auto_contact_plan.py",
     "exit_code": 0,
-    "seconds": 0.08,
-    "test_count": 7
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.11
   },
   {
     "test": "scripts/quest_diagnostic/test_auto_contact_shutdown.py",
     "exit_code": 0,
-    "seconds": 0.16,
-    "test_count": 3
+    "test_count": 3,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.15
   },
   {
     "test": "scripts/quest_diagnostic/test_binary_trigger.py",
     "exit_code": 0,
-    "seconds": 0.74,
-    "test_count": 4
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.78
   },
   {
     "test": "scripts/quest_diagnostic/test_contact_geometry_snapshot.py",
     "exit_code": 0,
-    "seconds": 0.16,
-    "test_count": 4
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.16
   },
   {
     "test": "scripts/quest_diagnostic/test_contact_postmortem.py",
     "exit_code": 0,
-    "seconds": 0.2,
-    "test_count": 2
+    "test_count": 2,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.22
   },
   {
     "test": "scripts/quest_diagnostic/test_contact_probe.py",
     "exit_code": 0,
-    "seconds": 0.22,
-    "test_count": 4
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.24
   },
   {
     "test": "scripts/quest_diagnostic/test_control.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 14
+    "test_count": 14,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_display_status.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 4
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_episode_control.py",
     "exit_code": 0,
-    "seconds": 0.78,
-    "test_count": 11
+    "test_count": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.84
   },
   {
     "test": "scripts/quest_diagnostic/test_free_gripper.py",
     "exit_code": 0,
-    "seconds": 0.8,
-    "test_count": 7
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.87
   },
   {
     "test": "scripts/quest_diagnostic/test_loop_diagnostics.py",
     "exit_code": 0,
-    "seconds": 0.88,
-    "test_count": 9
+    "test_count": 9,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.91
   },
   {
     "test": "scripts/quest_diagnostic/test_official_vr.py",
     "exit_code": 0,
-    "seconds": 0.06,
-    "test_count": 5
+    "test_count": 5,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_page_routes.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 1
+    "test_count": 1,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_pairing.py",
     "exit_code": 0,
-    "seconds": 0.17,
-    "test_count": 8
+    "test_count": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.25
   },
   {
     "test": "scripts/quest_diagnostic/test_practice.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 3
+    "test_count": 3,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.06
   },
   {
     "test": "scripts/quest_diagnostic/test_preview.py",
     "exit_code": 0,
-    "seconds": 0.08,
-    "test_count": 8
+    "test_count": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.09
   },
   {
     "test": "scripts/quest_diagnostic/test_preview_encoding.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 2
+    "test_count": 2,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_receiver.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 8
+    "test_count": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_recording_session.py",
     "exit_code": 0,
-    "seconds": 1.66,
-    "test_count": 2
+    "test_count": 2,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 2.59
   },
   {
     "test": "scripts/quest_diagnostic/test_reset_rgb_contract.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 5
+    "test_count": 5,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.05
   },
   {
     "test": "scripts/quest_diagnostic/test_response.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 7
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.06
   },
   {
     "test": "scripts/quest_diagnostic/test_teleop_gripper_options.py",
     "exit_code": 0,
-    "seconds": 0.06,
-    "test_count": 6
+    "test_count": 6,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.06
   },
   {
     "test": "scripts/quest_diagnostic/test_teleop_slave_gains.py",
     "exit_code": 0,
-    "seconds": 0.09,
-    "test_count": 7
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.1
   },
   {
     "test": "scripts/quest_diagnostic/test_tip_contact_observation.py",
     "exit_code": 0,
-    "seconds": 0.07,
-    "test_count": 5
+    "test_count": 5,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.12
   },
   {
     "test": "scripts/quest_diagnostic/test_wallclock_video.py",
     "exit_code": 0,
-    "seconds": 0.84,
-    "test_count": 3
+    "test_count": 3,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.88
   },
   {
     "test": "scripts/tools/test_base_toast_delivery.py",
-    "exit_code": 1,
-    "seconds": 42.81,
-    "test_count": 15
+    "exit_code": 0,
+    "test_count": 15,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 44.82
   },
   {
     "test": "scripts/tools/test_bread_slot_logic.py",
     "exit_code": 0,
-    "seconds": 1.02,
-    "test_count": 1
+    "test_count": 1,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.1
   },
   {
     "test": "scripts/tools/test_current_toast_delivery.py",
-    "exit_code": 1,
-    "seconds": 33.21,
-    "test_count": 7
+    "exit_code": 0,
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 33.8
   },
   {
     "test": "scripts/tools/test_graceful_shutdown.py",
     "exit_code": 0,
-    "seconds": 3.93,
-    "test_count": 2
+    "test_count": 2,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 3.92
   },
   {
     "test": "scripts/tools/test_ptb_toast_delivery.py",
-    "exit_code": 1,
-    "seconds": 79.39,
-    "test_count": 8
+    "exit_code": 0,
+    "test_count": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 81.76
   },
   {
     "test": "scripts/tools/test_record_quest_base.py",
     "exit_code": 0,
-    "seconds": 3.43,
-    "test_count": 6
+    "test_count": 6,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 3.25
+  },
+  {
+    "test": "scripts/tools/test_release_assets.py",
+    "exit_code": 0,
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.07
+  },
+  {
+    "test": "scripts/tools/test_release_provenance.py",
+    "exit_code": 0,
+    "test_count": 4,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.48
   },
   {
     "test": "scripts/tools/test_toast_audit_lifecycle.py",
     "exit_code": 0,
-    "seconds": 0.05,
-    "test_count": 6
+    "test_count": 6,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.04
   },
   {
     "test": "scripts/tools/test_toast_collection_validation.py",
-    "exit_code": 1,
-    "seconds": 1.01,
-    "test_count": 7
+    "exit_code": 0,
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.15
   },
   {
     "test": "scripts/tools/test_toast_recording_metadata.py",
     "exit_code": 0,
-    "seconds": 0.68,
-    "test_count": 7
+    "test_count": 7,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.64
   },
   {
     "test": "scripts/tools/test_toast_scenario_runtime.py",
     "exit_code": 0,
-    "seconds": 10.95,
-    "test_count": 8
+    "test_count": 8,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 11.98
   },
   {
     "test": "scripts/tools/test_toast_serving_success.py",
     "exit_code": 0,
-    "seconds": 1.06,
-    "test_count": 14
+    "test_count": 14,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.12
   },
   {
     "test": "scripts/tools/test_toaster_led.py",
     "exit_code": 0,
-    "seconds": 0.97,
-    "test_count": 11
+    "test_count": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.05
   }
 ]

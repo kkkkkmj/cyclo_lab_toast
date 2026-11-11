@@ -4,7 +4,7 @@
 
 An **Isaac Sim toast preparation task environment** with **Meta Quest bimanual and gripper teleoperation**, demonstration collection, and reproducible scenario execution. This project is based on [ROBOTIS-GIT/cyclo_lab](https://github.com/ROBOTIS-GIT/cyclo_lab) and extends the toast environment in [badajhong/cyclo_lab](https://github.com/badajhong/cyclo_lab). The existing environment framework, robots, IK and recorder infrastructure belong to their upstream authors; this package integrates local toast, Quest, scenario and recording extensions.
 
-**Release status:** CPU validation is documented in [validation](docs/release/VALIDATION.md). GPU/Quest operation and a fresh Docker build have not been verified for this release. **A clone alone is insufficient:** the four-groove rack requires an independently authorized exact asset file, RoboDojo assets require the pinned downloader, and NVIDIA table/materials require cloud access. Rack redistribution permission is still unconfirmed; cloud dependency loading is unverified. See the [asset acquisition/rights checklist](docs/release/ASSETS.md). Ctrl+C leaving Isaac Sim alive has been reported again and remains unresolved. This is not a fully validated turnkey release.
+**Release status:** GitHub publication is pending; the clone commands below apply after publication. CPU validation is documented in [validation](docs/release/VALIDATION.md). GPU/Quest operation and a fresh Docker build have not been verified for this release. **A clone alone is insufficient:** the four-groove rack requires an independently authorized exact asset file, RoboDojo assets require the pinned downloader, and NVIDIA table/materials require cloud access. Rack redistribution permission is still unconfirmed; cloud dependency loading is unverified. See the [asset acquisition/rights checklist](docs/release/ASSETS.md). Ctrl+C leaving Isaac Sim alive has been reported again and remains unresolved. This is not a fully validated turnkey release.
 
 ## Upstream Projects and Attribution
 
@@ -19,6 +19,7 @@ Linux x86-64, NVIDIA GPU/driver suitable for Isaac Sim, NVIDIA Container Toolkit
 Install Git LFS using your OS package manager first. Then:
 
 ```bash
+cd ~
 git lfs install
 git clone https://github.com/kkkkkmj/cyclo-toast-teleop.git
 cd cyclo-toast-teleop
@@ -56,7 +57,8 @@ The image is `cyclo-toast-teleop:isaacsim-5.1.0`; project volumes are separate f
 Run in your desktop terminal. `echo "$DISPLAY"` and `echo "$XAUTHORITY"` show session values; keep those values when present. `:0` and `$HOME/.Xauthority` below are fallbacks, not universal desktop locations. If the cookie is elsewhere, set `XAUTHORITY` to that existing file. Do not disable X authentication globally.
 
 ```bash
-cd "$REPO"
+cd ~/cyclo-toast-teleop
+export REPO="$PWD"
 export DISPLAY="${DISPLAY:-:0}"
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
 test -f "$XAUTHORITY"
@@ -72,7 +74,8 @@ This selects `toast_base_20261109_025`. `R` resets the selected layout. Close th
 Terminal 1, in the checkout: replace `192.168.1.10` with the PC's LAN address (inspect `hostname -I` or `ip address`). Select an unused port reachable from Quest; the example uses 8766.
 
 ```bash
-cd "$REPO"
+cd ~/cyclo-toast-teleop
+export REPO="$PWD"
 export QUEST_HOST=192.168.1.10
 export QUEST_PORT=8766
 python3 scripts/quest_diagnostic/server.py \
@@ -85,7 +88,8 @@ Open `https://PC_LAN_IP:8766/` in Quest Browser, acknowledge the local certifica
 Terminal 2, from the same checkout and desktop session:
 
 ```bash
-cd "$REPO"
+cd ~/cyclo-toast-teleop
+export REPO="$PWD"
 export DISPLAY="${DISPLAY:-:0}"
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
 GROUP=operator_B_1 INDEX=1 python3 scripts/record_quest_base.py --dry-run
