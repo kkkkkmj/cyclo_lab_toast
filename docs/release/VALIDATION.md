@@ -1,5 +1,13 @@
 # Release validation
 
+> Historical report: the results and publication/retry statements below describe
+> the 2026-11-11 validation session. They are retained as recorded, including
+> failed and unverified checks. For the separate 2026-11-21 repository-access
+> review, see [README repository status](../../README.md#overview). That review
+> could not resolve GitHub from its environment and does not supersede these
+> asset, Docker, GPU or Quest limitations. Publication of code and validation of
+> runtime prerequisites are separate claims.
+
 Updated 2026-11-11 after rechecking the previous release
 `6f713f07dd37127c76ac48520c5ee5f4d383b81a`. **Local CPU preparation is complete;
 public deployment is not complete.** GitHub publication, online asset acquisition,

@@ -173,7 +173,13 @@ class MakeToastFFWBG2BimanualCycleEnvCfg(MakeToastFFWBG2BimanualEnvCfg):
 
 @configclass
 class MakeToastFFWBG2BimanualServeEnvCfg(MakeToastFFWBG2BimanualCycleEnvCfg):
-    """Version 2 finishes by serving both popped slices on a small dark blue plate."""
+    """Version 2 requires at least one heated bread ID placed on the serving plate.
+
+    The same slice must satisfy bread_on_plate geometry, height, tilt and linear
+    speed checks. task_done also requires completed pop-up, a lever press ratio
+    below 0.85, and plate uprightness/position checks; it imposes no robot posture
+    or reserve-slice condition. See bimanual_mdp.task_done for the exact predicates.
+    """
 
     serve_to_plate: bool = True
     toast_popup_extra_height: float = SERVING_POPUP_HEIGHT
