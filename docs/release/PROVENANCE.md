@@ -55,7 +55,7 @@ The base shared gripper defaults 2.2 rad/s and slave gains 2/0.5 are overridden 
 - Added explicit asset installation/preflight and release validation/publishing tools.
 - Updated a loop test fixture with the cooperative `shutdown.requested=False` object introduced in the latest implementation. No runtime shutdown or physics code is modified.
 
-Known code/documentation distinctions: v2 needs at least one cooked/served ID despite an inherited “both slices” class docstring; 90% entry threshold differs from the shared 85% pressed predicate. Neither was changed to match a prose checklist.
+The inherited “both slices” class docstring was corrected in commit `e49e00e` to match the existing minimum-one-slice success condition; the executable predicate was unchanged. The 90% cycle-entry threshold and shared 85% lever-pressed predicate serve different purposes and remain unchanged.
 
 For the updated rights-holder checklist, installer behavior, all 66 LFS results and incomplete cloud/MDL closure, see [asset audit](ASSETS.md).
 

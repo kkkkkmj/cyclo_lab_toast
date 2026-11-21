@@ -4,15 +4,15 @@
 
 Use the PC's reachable LAN address, not localhost, and an unused port allowed by
 the local firewall. Open the HTTPS URL printed by the server in Quest Browser,
-acknowledge its local certificate and enter the single-use Pair PIN. Type `p`
+accept its local HTTPS certificate and enter the single-use Pair PIN. Type `p`
 and Enter in the server terminal for a new PIN. Reload the browser after changing
 client/server versions. Certificates live in `~/.local/state/cyclo-quest-tls`;
 do not commit private keys.
 
 The base launcher uses `logs/quest_toast_recording` on the host and
 `/workspace/cyclo_lab/logs/quest_toast_recording` in the container. The server and
-simulation must use that same bridge. Run only one simulation producer per bridge.
-Release both squeezes before X-start and wait for `REC` / `RECORD_STARTED`.
+simulation must use that same bridge. Run only one simulation instance per bridge directory.
+Release both squeeze buttons before pressing X, then wait for `REC` / `RECORD_STARTED`.
 See [recording diagnostics](../scripts/quest_diagnostic/DIAGNOSTICS.md).
 
 ## Missing assets
@@ -63,7 +63,6 @@ A native hang may still prevent cleanup. As a **last resort chosen by the
 operator**, `docker stop --time 60 "$RUN_CONTAINER"` sends TERM and eventually
 KILL to this one container. That can lose buffered HDF5/MP4 data: preserve all
 existing run files, treat interrupted outputs as incomplete and inspect them
-before use. This is recovery guidance, not a shutdown fix; no such command was
-run against an existing session during release preparation.
+before use. These commands are recovery options; they do not resolve the underlying shutdown issue.
 
 [Documentation index](README.md)

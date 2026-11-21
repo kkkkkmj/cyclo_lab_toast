@@ -18,7 +18,7 @@ Start with the [project README](../README.md) for installation and a first run.
 | `docker/` | Image and Compose configuration |
 | `scenario_delivery*` | Three fixed scenario sets, assignments and reproduction inputs |
 | `third_party/` | Four vendored source snapshots; no submodule initialization needed |
-| `docs/toast_quest/` | Existing toast/Quest development notes |
+| `docs/toast_quest/` | Scenario relocation metadata |
 | `docs/release/` | Provenance, audit data and historical validation evidence |
 | `recordings/`, `logs/` | Local generated outputs, ignored by Git |
 
@@ -35,5 +35,5 @@ They are evidence, not the default installation instructions. Release JSON files
 and `release/generation_sources/` are consumed by integrity/reproduction checks;
 do not translate, regenerate or remove them as documentation cleanup.
 
-The [publication handoff](release/PUBLICATION.md) records the pending repository
-migration separately from user installation instructions.
+The [publication history](release/PUBLICATION.md) records the completed repository
+split. It is a maintainer reference, not an installation step.

@@ -14,8 +14,8 @@ See [task details](docs/TASK.md) and the [documentation index](docs/README.md).
 - Meta Quest with Quest Browser, on a network that can reach the PC's HTTPS port.
 - RoboDojo downloads and network access to NVIDIA table/material assets.
 
-Docker configures Isaac Sim **5.1.0**, Isaac Lab **2.3.0** and PyTorch **2.7.0**.
-The robot and exact rack are included; cloning does not install the host stack
+The Docker image is configured to use Isaac Sim **5.1.0**, Isaac Lab **2.3.0** and PyTorch **2.7.0**.
+The robot and bread rack are included; cloning does not install the host stack
 or download all external assets. See [asset setup](docs/ASSETS.md).
 
 ## Installation
@@ -79,7 +79,7 @@ python3 scripts/quest_diagnostic/server.py \
   --bridge-dir "$REPO/logs/quest_toast_recording"
 ```
 
-Open `https://PC_LAN_IP:8766/` in Quest Browser, acknowledge the local certificate, and enter the terminal's single-use **Pair** PIN. `p` + Enter in the server terminal issues a new PIN. Certificates and private keys default to `~/.local/state/cyclo-quest-tls`, outside the checkout. Reload the page when client/server builds differ, then enter VR.
+Open `https://PC_LAN_IP:8766/` in Quest Browser, accept the local HTTPS certificate, and enter the terminal's single-use **Pair** PIN. `p` + Enter in the server terminal issues a new PIN. Certificates and private keys default to `~/.local/state/cyclo-quest-tls`, outside the checkout. Reload the page when client/server builds differ, then enter VR.
 
 Terminal 2, from the same checkout and desktop session:
 
@@ -92,10 +92,11 @@ GROUP=operator_B_1 INDEX=1 python3 scripts/record_quest_base.py --dry-run
 GROUP=operator_B_1 INDEX=1 python3 scripts/record_quest_base.py
 ```
 
-The host bridge `$REPO/logs/quest_toast_recording` corresponds exactly to `/workspace/cyclo_lab/logs/quest_toast_recording` in the container. Use one simulation producer per bridge. This base launcher deliberately fixes the bridge and manifest; a custom direct teleop invocation must use matching paths in both processes.
+The host bridge `$REPO/logs/quest_toast_recording` corresponds exactly to `/workspace/cyclo_lab/logs/quest_toast_recording` in the container. Run only one simulation instance per bridge directory. The base launcher uses fixed bridge and manifest paths; custom teleoperation commands must use the same bridge directory as the server.
 
 
-Recording starts only after an accepted X-start (`REC` / `RECORD_STARTED`).
+Press X to request a new recording. Recording begins when the recorder accepts
+the request and displays `REC` / `RECORD_STARTED`.
 Success, failure, timeout or tracking stall can end an episode automatically;
 the result remains beside `NO REC` until the next accepted start.
 
@@ -103,9 +104,9 @@ the result remains beside `NO REC` until the next accepted start.
 
 | Input | Action |
 |---|---|
-| X, after releasing both squeezes | Request reset/start of a recording attempt |
-| Left/right squeeze | Control the corresponding arm target while held |
-| Corresponding trigger | Control that gripper |
+| X, after releasing both squeeze buttons | Request reset/start of a recording attempt |
+| Left/right squeeze button | Control the corresponding arm target while held |
+| Trigger, while holding the same controller's squeeze button | Control the corresponding gripper |
 | A | End the current episode manually |
 | R in GUI preview | Reset the selected layout |
 | `p` + Enter in server terminal | Issue a new single-use pairing PIN |
@@ -153,4 +154,4 @@ Credit their authors, NVIDIA/Isaac Lab, RoboDojo and all retained copyright hold
 See [LICENSE](LICENSE), [LICENSE-IsaacLab](LICENSE-IsaacLab),
 [third-party notices](THIRD_PARTY_LICENSES.md) and [provenance](docs/release/PROVENANCE.md).
 External assets retain their own terms; the code license grants no new blanket
-asset rights. Rack upload authorization is documented in [assets](docs/ASSETS.md).
+asset rights. See [asset details](docs/ASSETS.md) for source and licensing information.

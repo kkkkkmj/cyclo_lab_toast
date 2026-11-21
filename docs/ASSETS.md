@@ -21,11 +21,10 @@ It does not download demonstration datasets. Review the upstream RoboDojo terms
 linked in [provenance](release/PROVENANCE.md). NVIDIA dependencies are separate;
 `--assets` checks local pinned files, not complete cloud/renderer availability.
 
-The user explicitly authorized public upload of the exact rack on 2026-11-21.
-This records that authorization without asserting an independently verified
-author, original source or license. The code license does not supply a new
-blanket asset license. Exact hashes, source records and historical acquisition
-results are retained in the [asset audit](release/ASSETS.md).
+The rack is included in the repository. Its original author, source and license
+have not been independently verified; the repository code license does not
+automatically apply to this asset. Source records, upload authorization and
+checksums are retained in the [asset audit](release/ASSETS.md).
 
 For older/incomplete checkouts, `scripts/tools/install_bread_slot.py` remains an
 optional recovery tool accepting only the original bytes; it is not a normal
