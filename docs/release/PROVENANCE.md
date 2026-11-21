@@ -24,11 +24,11 @@ The public ROBOTIS project also identifies Apache-2.0 and BSD-3-Clause licenses.
 |---|---|
 | FFW-BG2 robot USDs | Preserved from the Cyclo Lab source, under its retained notices. These are actual local Git blobs, not unresolved LFS pointers. |
 | RoboDojo toaster, bread, plate and legacy shelf | Not republished; fetch using `python3 scripts/tools/download_make_toast_assets.py`. `asset_manifest.json` pins revision `63fcc045f2e974902eb7800d29de48004cf86016` and every SHA256/size. The manifest and [official dataset page](https://huggingface.co/datasets/RoboDojo-Benchmark/RoboDojo/tree/main) identify Apache-2.0. Review upstream terms for your use; no demonstration/training dataset download is needed. |
-| Four-groove rack `bread_slot.usdz` | Source record only says it was copied from Downloads. Author, original URL and redistribution grant are absent. The binary is excluded and ignored. Obtain the exact file and permission directly from its rights holder; no public authorized download URL has been established. Run `python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz`. Required SHA256: `338eb23d759224c0686857b3e793070b2bf03f9c7fe25f872a3c598bd67330d8`. Hash verification proves identity, **not permission**. The wrapper `rack.usda`, offsets, tests and scenario poses are preserved. Until the file is lawfully acquired, simulation and mesh geometry checks are blocked. |
+| Four-groove rack `bread_slot.usdz` | Included as a regular Git blob after the user's explicit public-upload authorization on 2026-11-21. Size: 72,165 bytes; SHA256: `338eb23d759224c0686857b3e793070b2bf03f9c7fe25f872a3c598bd67330d8`. No separate installation is required. The source record identifies a Downloads copy; author, original URL and license are not independently established. Hash verification proves identity. The wrapper, geometry, physics and scenario poses are unchanged. See [current asset guidance](ASSETS.md). |
 | Packing table | NVIDIA Isaac Sim configured cloud asset root + `/Isaac/Props/PackingTable/packing_table.usd`; fetched by Isaac Sim under NVIDIA terms, including referenced materials. Not bundled. |
 | Other inherited missing LFS assets | 66 initially unavailable source pointers enumerated in `missing-lfs.json`; all have now been recovered and hash-verified in isolated audit storage (see `lfs_audit.json`), principally unrelated robot/food textures, motion and documentation media. Excluded because they are unrelated to toast; they are not published as unresolved pointers. This release supports the toast workflow, not every inherited upstream example. |
 
-Downloaded RoboDojo and rack files used for local CPU validation are ignored and are not part of the commit or Docker publication. A new lab must independently obtain them. No small substitute mesh, altered physics or relaxed success tolerance was introduced to hide missing assets.
+RoboDojo files remain ignored and must be downloaded separately. The rack was excluded during the historical CPU validation, but the exact binary is now included with user authorization. No small substitute mesh, altered physics or relaxed success tolerance was introduced to hide missing assets.
 
 ## Current settings (unchanged)
 
@@ -89,6 +89,5 @@ python3 scripts/tools/reproduce_toast_generation.py \
 The output must be new/empty. PTB's nine generated files are compared byte-for-byte
 with the saved delivery, including metadata; no assertion is removed or ignored.
 The source bundle includes the older other-set fingerprints for evidence
-verification, but only fixed base/PTB generation is exposed by this tool. External
-rack authorization and the pinned USD assets remain prerequisites. CPU dependency
+verification, but only fixed base/PTB generation is exposed by this tool. The bundled rack and separately downloaded pinned RoboDojo USD assets remain prerequisites. CPU dependency
 versions used for the new validation are recorded in `cpu_environment.json`.

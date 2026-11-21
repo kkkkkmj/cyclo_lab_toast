@@ -99,8 +99,6 @@ docker/zenoh_cache/
 /core.[0-9]*
 /measurements/
 
-# External asset: install only after obtaining permission from its rights holder.
-/source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz
 .env
 .env.local
 *.p12

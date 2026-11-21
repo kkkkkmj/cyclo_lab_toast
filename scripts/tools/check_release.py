@@ -45,7 +45,7 @@ def main():
         from install_bread_slot import SHA256, WRAPPER_SHA256
         rack = base / 'bread_slot/bread_slot.usdz'
         if not rack.is_file() or hashlib.sha256(rack.read_bytes()).hexdigest() != SHA256:
-            parser.error('Obtain authorized rack and run scripts/tools/install_bread_slot.py; see README')
+            parser.error('Missing/mismatched tracked bread_slot.usdz; restore the exact file from this repository revision; see README')
         wrapper = rack.with_name('rack.usda')
         if not wrapper.is_file() or hashlib.sha256(wrapper.read_bytes()).hexdigest() != WRAPPER_SHA256:
             parser.error('Missing/mismatched rack.usda: run git lfs pull and git lfs fsck')

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install an independently authorized exact rack USDZ; do not convert geometry.
+"""Optional recovery installer for the exact bundled rack USDZ; do not convert geometry.
 
 The versioned rack.usda wrapper supplies the original unit/axis/collision transform.
 No replacement mesh, texture download, or permission grant is produced here.
@@ -19,7 +19,7 @@ DESTINATION = ROOT / 'source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz'
 def install(source, target=DESTINATION):
     source, target = Path(source), Path(target)
     if not source.is_file():
-        raise ValueError(f'Missing input USDZ: {source}. Obtain the exact authorized file from its rights holder.')
+        raise ValueError(f'Missing input USDZ: {source}. Restore the tracked file from the intended repository revision.')
     raw = source.read_bytes()
     if hashlib.sha256(raw).hexdigest() != SHA256:
         raise ValueError('Wrong rack SHA256; expected ' + SHA256 + '. Geometry substitutions are not allowed.')
@@ -39,7 +39,7 @@ def install(source, target=DESTINATION):
         os.link(temporary, target)  # Atomic publication, refuses an existing target.
     finally:
         Path(temporary).unlink(missing_ok=True)
-    return 'Installed verified rack; permission must be supplied separately by its rights holder'
+    return 'Installed verified rack; see docs/release/ASSETS.md for the recorded user authorization'
 
 
 def main():

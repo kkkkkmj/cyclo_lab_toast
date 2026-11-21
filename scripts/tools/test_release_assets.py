@@ -21,7 +21,7 @@ class RackInstall(unittest.TestCase):
         shutil.copy2(rack.DESTINATION.with_name('rack.usda'), self.directory / 'rack.usda')
 
     def test_exact_source_install_idempotent_and_wrapper_unchanged(self):
-        self.assertTrue(rack.DESTINATION.is_file(), 'Install authorized rack before asset integration tests')
+        self.assertTrue(rack.DESTINATION.is_file(), 'Tracked rack USDZ must be present in the checkout')
         before = (self.directory / 'rack.usda').read_bytes()
         rack.install(rack.DESTINATION, self.target)
         self.assertEqual(hashlib.sha256(self.target.read_bytes()).hexdigest(), rack.SHA256)

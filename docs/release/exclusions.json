@@ -116,10 +116,6 @@
     "reason": "Recovered and SHA256-verified in isolated audit cache; excluded as unused by toast. See lfs_audit.json for per-object evidence."
   },
   {
-    "path": "source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz",
-    "reason": "rack redistribution authorization not documented"
-  },
-  {
     "path": "source/cyclo_lab/data/robots/FFW/FFW_SH5.usd",
     "reason": "Recovered and SHA256-verified in isolated audit cache; excluded as unused by toast. See lfs_audit.json for per-object evidence."
   },

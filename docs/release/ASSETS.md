@@ -1,61 +1,46 @@
 # Asset acquisition and rights review
 
-## Four-groove rack: publication remains blocked by missing permission
+## Four-groove rack: included in the repository
 
-The excluded file is `source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz`.
-Its source record identifies `/home/mj/Downloads/bread_slot.usdz` (a provenance
-fact, never an installation dependency). The original and the local validation
-copy are 72,165 bytes and SHA256
+On 2026-11-21, the user explicitly authorized public upload of the exact
+`source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz`. It is now tracked as a
+regular Git blob, not a Git LFS pointer. Both the existing checkout copy and
+`/home/mj/Downloads/bread_slot.usdz` were verified as 72,165 bytes with SHA256
 `338eb23d759224c0686857b3e793070b2bf03f9c7fe25f872a3c598bd67330d8`.
-The archive contains exactly one member, `bread_slot.usdc`. USD traversal found
-no external mesh or texture references. Layer custom data, documentation and
-comment fields contain no author, license or redistribution grant. No associated
-rights-holder notice or public source URL was found. Local existence, Git history
-and a web search with no results are not permission evidence.
+The Downloads path is provenance evidence, not an installation dependency.
+User authorization is recorded here; no independently verified author, original
+source URL or asset license is asserted, and no blanket code license is assigned
+to the asset.
 
-`rack.usda` is **a reference wrapper, not a converted replacement mesh**. Its SHA256
-is `bf9d759dba0cc619eda5483bfba87db934e2b7ae1c4ac86af833cfaa5323dd52`.
-It references `bread_slot.usdz`, applies 0.001 unit scale, +90° X rotation, and
-−0.044148661134794986 m Z translation, and enables the existing static triangle
-collision. These settings are unchanged. The geometry remains in the excluded
-USDZ. `build_bread_slot_asset.py` is the historical wrapper builder, not a required
-installation step; installation must not regenerate or replace geometry.
+The 2026-11-11 validation excluded the binary because authorization was not
+recorded then. Those historical results remain in [VALIDATION.md](VALIDATION.md).
+This inclusion changes neither those results nor the original geometry.
 
-Ask the rights holder to identify the author/original source and provide written
-permission or an applicable license covering:
-
-- Public redistribution of the exact USDZ/embedded USDC in
-  `kkkkkmj/cyclo-toast-teleop`, including GitHub downloads and Git LFS storage.
-- Use with the provided transformed/collision-enabled USDA wrapper, and
-  redistribution of that wrapper and any derivative geometry if applicable.
-- Research simulation use, copying by other laboratories, and any limitations on
-  modification, commercial use, attribution or sharing derived assets.
-- The exact required copyright notice and license text. Identify the grant by
-  filename **and the SHA256 above**, not an unrelated bread-rack model.
-
-Until that evidence is supplied, the binary remains ignored/excluded. No other
-rack is substituted. A clone alone cannot run the identical environment.
+`rack.usda` remains unchanged, with SHA256
+`bf9d759dba0cc619eda5483bfba87db934e2b7ae1c4ac86af833cfaa5323dd52`.
+It references `bread_slot.usdz`, applies 0.001 unit scale, +90° X rotation and
+−0.044148661134794986 m Z translation, and retains static triangle collision.
+The USDZ contains `bread_slot.usdc`; no substitute or regenerated mesh is used.
 
 ## Installation and failure behavior
 
-After independently obtaining the authorized exact file:
+No separate rack acquisition or installation is needed for a current clone.
+The wrapper remains in Git LFS. RoboDojo assets still require downloading:
 
 ```bash
 git lfs pull
 git lfs fsck
-python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz
+python3 scripts/tools/download_make_toast_assets.py
 python3 scripts/tools/check_release.py --assets
 ```
 
-The input is the original USDZ, not `rack.usda`, an extracted USDC or a renamed
-archive. The installer verifies both the input SHA256 and the versioned wrapper,
-then publishes the bytes atomically at
-`source/cyclo_lab/data/objects/bread_slot/bread_slot.usdz`. No conversion, network
-download or license grant happens. Reinstalling identical bytes is harmless;
-wrong input, missing input, missing/corrupt wrapper or a different existing output
-fails with an actionable message. It never overwrites a different installed rack.
-The environment resolver now detects a missing USDZ behind an existing wrapper
-and points to this procedure before requesting asset loading.
+A missing/mismatched rack indicates an incomplete or modified checkout; restore
+the tracked file from the intended revision. `install_bread_slot.py` remains an
+optional recovery tool for older/incomplete checkouts with an exact source file.
+It checks the original hash and wrapper and refuses different existing bytes.
+It does not convert geometry or grant a license. NVIDIA table/material access,
+PC/Docker/GPU setup and Quest networking/HTTPS/PIN pairing remain necessary;
+including the rack does not establish a successful build or GPU/Quest execution.
 
 ## Formerly missing 66 LFS objects
 
@@ -108,7 +93,7 @@ is explicitly a **local pinned-file** check, not a table/cloud/renderer check.
 
 For RoboDojo, [download_audit.json](download_audit.json) lists all nine exact
 URLs, pinned revision, sizes, SHA256 values, installation destinations and new
-remote checks. All URL checks failed DNS in this session. The official dataset
+remote checks. All URL checks failed DNS in the historical validation session. The official dataset
 source is `RoboDojo-Benchmark/RoboDojo`, revision
 `63fcc045f2e974902eb7800d29de48004cf86016`; the retained manifest identifies its
 Apache-2.0 dataset-card license. The downloader validates existing files and
@@ -118,8 +103,7 @@ nonzero and gives a retry instruction. CPU tests exercise these failure cases;
 that does not prove online availability.
 
 The repository has one reachable LFS object (`rack.usda`); actual BG2 robot USDs
-are regular Git blobs under retained `.gitattributes` exceptions. The ignored
-external USDZ files are never added by `git add .`. Vendored `third_party` source
+are regular Git blobs under retained `.gitattributes` exceptions. The rack USDZ is a regular Git blob; downloaded RoboDojo assets remain ignored. Vendored `third_party` source
 trees contain no gitlinks; `.gitmodules` records upstream URLs and submodule
 initialization is a no-op. Do not replace those snapshots with current upstream
 branches.

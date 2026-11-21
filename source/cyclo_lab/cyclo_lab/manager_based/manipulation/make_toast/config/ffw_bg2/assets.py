@@ -50,8 +50,8 @@ def asset_path(name: str) -> str:
             else ASSET_DIR / name / "object.usdz")
     if name == "bread_shelf" and not path.with_name("bread_slot.usdz").is_file():
         raise FileNotFoundError(
-            "Missing required four-groove rack USDZ. Obtain the authorized file and run "
-            "python3 scripts/tools/install_bread_slot.py /path/to/authorized/bread_slot.usdz; "
+            "Missing tracked four-groove rack USDZ. Restore bread_slot.usdz from "
+            "the intended repository revision; "
             "the versioned rack.usda wrapper alone is insufficient. See README.md."
         )
     if not path.is_file():
