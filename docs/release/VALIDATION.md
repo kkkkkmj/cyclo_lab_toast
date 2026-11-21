@@ -3,7 +3,7 @@
 > Historical report: the results and publication/retry statements below describe
 > the 2026-11-11 validation session. They are retained as recorded, including
 > failed and unverified checks. For the separate 2026-11-21 repository-access
-> review, see [README repository status](../../README.md#overview). That review
+> review, see [repository-access history](PUBLICATION.md#prior-access-checks). That review
 > could not resolve GitHub from its environment and does not supersede these
 > asset, Docker, GPU or Quest limitations. Publication of code and validation of
 > runtime prerequisites are separate claims.
