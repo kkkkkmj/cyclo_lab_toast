@@ -1,4 +1,8 @@
-# cyclo-toast-teleop
+# cyclo_lab_toast
+
+**Original Framework:** https://github.com/ROBOTIS-GIT/cyclo_lab
+
+**Direct Toast Baseline:** https://github.com/badajhong/cyclo_lab
 
 An Isaac Sim toast preparation environment with Meta Quest bimanual teleoperation,
 gripper control and demonstration recording. It combines a simulated toast cycle,
@@ -6,6 +10,27 @@ three reproducible scenario sets, and HDF5/video capture for reviewing attempts.
 Serving v2 succeeds when at least one heated slice is placed on the plate after
 pop-up, with the lever released and the required placement checks satisfied.
 See [task details](docs/TASK.md) and the [documentation index](docs/README.md).
+
+## Project lineage and scope
+
+The Cyclo Lab framework supplies the robot integration, IK/control infrastructure
+and Isaac Lab recording foundation. The direct toast baseline supplies the toast
+task foundation. Retained source headers and licenses identify their authors;
+this repository does not claim those components as original work.
+
+The project-specific toast development layer inherited from
+[cyclo-toast-teleop](https://github.com/kkkkkmj/cyclo-toast-teleop) includes the
+Quest workflow, toast serving/recording integration, three scenario corpora,
+selection and provenance/reproduction tools. These describe the project's
+additions and adaptations, not an independently verified per-author allocation.
+[Historical provenance](docs/release/PROVENANCE.md) records the available baseline
+evidence and its limits; the exact ROBOTIS upstream commit is not established.
+
+This repository preserves that distribution's Git history through
+`7fc8b5ebfa33de040f70cb5fa3552044f6e7c787`. The changes made here organize the
+existing corpora under `scenarios/`, adapt paths and historical reproduction,
+and improve documentation. They introduce no new layouts, control/task behavior,
+assets or recording format. See the [scenario guide](scenarios/README.md).
 
 ## Requirements
 
@@ -25,8 +50,8 @@ Install the requirements above, then:
 ```bash
 cd ~
 git lfs install
-git clone https://github.com/kkkkkmj/cyclo-toast-teleop.git
-cd cyclo-toast-teleop
+git clone https://github.com/kkkkkmj/cyclo_lab_toast.git
+cd cyclo_lab_toast
 export REPO="$PWD"
 git lfs pull
 git lfs fsck
@@ -53,13 +78,13 @@ and the image is `cyclo-toast-teleop:isaacsim-5.1.0`.
 Run in your desktop terminal. `echo "$DISPLAY"` and `echo "$XAUTHORITY"` show session values; keep those values when present. `:0` and `$HOME/.Xauthority` below are fallbacks, not universal desktop locations. If the cookie is elsewhere, set `XAUTHORITY` to that existing file. Do not disable X authentication globally.
 
 ```bash
-cd ~/cyclo-toast-teleop
+cd ~/cyclo_lab_toast
 export REPO="$PWD"
 export DISPLAY="${DISPLAY:-:0}"
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
 test -f "$XAUTHORITY"
 bash scripts/run_mj.sh --gui scripts/tools/view_make_toast_scenario.py \
-  --scenario_manifest scenario_delivery_base/manifest.json \
+  --scenario_manifest scenarios/fixed_tpb/manifest.json \
   --scenario_group operator_B_1 --group_index 1 --steps 0
 ```
 
@@ -70,7 +95,7 @@ This selects `toast_base_20261109_025`. `R` resets the selected layout. Close th
 Terminal 1, in the checkout: replace `192.168.1.10` with the PC's LAN address (inspect `hostname -I` or `ip address`). Select an unused port reachable from Quest; the example uses 8766.
 
 ```bash
-cd ~/cyclo-toast-teleop
+cd ~/cyclo_lab_toast
 export REPO="$PWD"
 export QUEST_HOST=192.168.1.10
 export QUEST_PORT=8766
@@ -84,7 +109,7 @@ Open `https://PC_LAN_IP:8766/` in Quest Browser, accept the local HTTPS certific
 Terminal 2, from the same checkout and desktop session:
 
 ```bash
-cd ~/cyclo-toast-teleop
+cd ~/cyclo_lab_toast
 export REPO="$PWD"
 export DISPLAY="${DISPLAY:-:0}"
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
@@ -120,9 +145,12 @@ before starting another session.
 
 | Set | Robot left to right | Scenarios |
 |---|---|---:|
-| [Base](scenario_delivery_base/README.md) | Toaster, plate, rack | 100 |
-| [Mixed](scenario_delivery/README.md) | Six object-order permutations | 100 |
-| [PTB](scenario_delivery_base_ptb/README.md) | Plate, toaster, rack | 100 |
+| [Base](scenarios/fixed_tpb/README.md) | Toaster, plate, rack | 100 |
+| [Mixed](scenarios/mixed/README.md) | Six object-order permutations | 100 |
+| [PTB](scenarios/fixed_ptb/README.md) | Plate, toaster, rack | 100 |
+
+These are **300 initial layouts, not 300 recorded demonstrations**.
+See [scenario design and reproducibility](scenarios/README.md).
 
 Each set has four groups (`operator_A_1`, `operator_A_2`, `operator_B_1`,
 `operator_B_2`) with 25 scenarios each. The base launcher uses `GROUP` and

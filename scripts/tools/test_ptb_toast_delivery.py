@@ -146,7 +146,7 @@ class PTBDelivery(unittest.TestCase):
             self.assertTrue(torch.equal(scene['toaster'].joints, scene['toaster'].targets))
             for old in gen.EXISTING:
                 with self.assertRaises(ValueError): loader.get_scenario(e['id'], gen.ROOT / old / 'manifest.json')
-        self.assertEqual(loader.MANIFEST, gen.ROOT / 'scenario_delivery/manifest.json')
+        self.assertEqual(loader.MANIFEST, gen.ROOT / 'scenarios/mixed/manifest.json')
         with self.assertRaises(ValueError): loader.get_scenario('toast_base_20261109_025', MANIFEST)
 
     def test_recording_manifest_snapshot_and_replay(self):
@@ -246,7 +246,7 @@ class PTBDelivery(unittest.TestCase):
     def test_reproduction_in_separate_empty_directory(self):
         with tempfile.TemporaryDirectory(prefix='toast-ptb-reproduce-') as tmp:
             rebuilt = Path(tmp) / 'delivery'
-            with contextlib.redirect_stdout(io.StringIO()): reproduce('scenario_delivery_base_ptb', rebuilt)
+            with contextlib.redirect_stdout(io.StringIO()): reproduce('scenarios/fixed_ptb', rebuilt)
             files = sorted(p.relative_to(rebuilt) for p in rebuilt.rglob('*') if p.is_file())
             self.assertEqual(len(files), 9)
             for name in files:

@@ -16,8 +16,8 @@ def main():
     parser.add_argument('--source', type=Path, required=True, help='Historical input manifest')
     parser.add_argument('--output', type=Path, required=True, help='New output outside the active delivery')
     args = parser.parse_args()
-    if args.output.exists() or args.output.resolve().is_relative_to(ROOT/'scenario_delivery'):
-        parser.error('Choose a new output outside scenario_delivery')
+    if args.output.exists() or args.output.resolve().is_relative_to(ROOT/'scenarios/mixed'):
+        parser.error('Choose a new output outside scenarios/mixed')
     source = args.source
     data = json.loads(source.read_text())
     data['rack_asset'] = 'source/cyclo_lab/data/objects/bread_slot/rack.usda'

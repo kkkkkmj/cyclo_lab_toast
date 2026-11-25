@@ -61,7 +61,7 @@ class SessionTest(unittest.TestCase):
         # Keep artifacts when requested; mkdtemp guarantees no existing recording is touched.
         directory=Path(tempfile.mkdtemp(prefix='quest-recording-cpu-',dir=os.environ.get('QUEST_TEST_ROOT','/tmp')))
         print('CPU_ARTIFACTS',directory)
-        manifest=ROOT/'scenario_delivery_base/manifest.json'
+        manifest=ROOT/'scenarios/fixed_tpb/manifest.json'
         entries=json.loads(manifest.read_text())['scenarios']
         entry=next(e for e in entries if e['scenario_group']=='operator_B_1' and e['group_index']==1)
         out,meta=create_diagnostic(directory/'run',manifest,entry['operator'],entry['id'],entry['operator_index'],1)

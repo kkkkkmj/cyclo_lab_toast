@@ -4,9 +4,9 @@ Run the [Quest setup](../README.md#quest-connection-and-demonstration-recording)
 
 | Directory | Robot left → right (+Y → −Y) | Count |
 |---|---|---:|
-| [scenario_delivery](../scenario_delivery/README.md) | Six permutations of toaster, plate and rack | 100 |
-| [scenario_delivery_base](../scenario_delivery_base/README.md) | Toaster → Plate → Bread Rack | 100 |
-| [scenario_delivery_base_ptb](../scenario_delivery_base_ptb/README.md) | Plate → Toaster → Bread Rack | 100 |
+| [scenarios/mixed](../scenarios/mixed/README.md) | Six permutations of toaster, plate and rack | 100 |
+| [scenarios/fixed_tpb](../scenarios/fixed_tpb/README.md) | Toaster → Plate → Bread Rack | 100 |
+| [scenarios/fixed_ptb](../scenarios/fixed_ptb/README.md) | Plate → Toaster → Bread Rack | 100 |
 
 Each has `operator_A_1`, `operator_A_2`, `operator_B_1`, `operator_B_2`, **25 scenarios each**. Each manifest specifies scenario IDs, assignments, poses and seeds. Coordinates are +X forward, +Y robot left, +Z up; quaternions are wxyz. The set READMEs retain design, distributions, rejection criteria and reproduction information.
 

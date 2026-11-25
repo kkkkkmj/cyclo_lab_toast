@@ -9,7 +9,7 @@ import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSIGNMENTS = ROOT / "scenario_delivery/assignments.csv"
+ASSIGNMENTS = ROOT / "scenarios/mixed/assignments.csv"
 
 
 GROUPS = ("operator_A_1", "operator_A_2", "operator_B_1", "operator_B_2")
@@ -25,7 +25,7 @@ def build_parser():
     parser.add_argument("--scenario_id", help="Omit all selection arguments for the original layout")
     parser.add_argument("--operator", choices=("operator_A", "operator_B"))
     parser.add_argument("--scenario_index", type=int, help="1-based position in this operator's CSV list (1–50)")
-    parser.add_argument("--scenario_manifest", help="Defaults to scenario_delivery/manifest.json")
+    parser.add_argument("--scenario_manifest", help="Defaults to scenarios/mixed/manifest.json")
     parser.add_argument("--steps", type=int, default=0, help="Exit after N steps; 0 keeps viewing")
     parser.add_argument("--reset_every", type=int, default=0, help="Reset every N steps; 0 disables")
     add_group_arguments(parser)

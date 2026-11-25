@@ -9,8 +9,8 @@ from shapely.ops import unary_union
 from shapely import polygons, area, union_all
 from shapely.affinity import affine_transform
 from check_bread_slot_geometry import rotation
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'scenario_delivery'
-SOURCE=ROOT/'scenario_delivery/inputs/table_frame.json'
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'scenarios/mixed'
+SOURCE=ROOT/'scenarios/mixed/inputs/table_frame.json'
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def mesh_parts(path):

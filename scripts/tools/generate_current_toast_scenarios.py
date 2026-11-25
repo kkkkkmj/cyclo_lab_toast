@@ -21,7 +21,7 @@ from toast_scenario_geometry import hull, footprint, polygon_distance, supported
 ROOT=Path(__file__).resolve().parents[2]
 CFG=ROOT/'source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2'
 VERSION='v20261108_current_100'
-DEFAULT_OUTPUT=ROOT/'scenario_delivery'
+DEFAULT_OUTPUT=ROOT/'scenarios/mixed'
 OBJECTS=('toaster','plate','bread_shelf')
 GROUPS=('operator_A_1','operator_A_2','operator_B_1','operator_B_2')
 ORDERS=list(itertools.permutations(OBJECTS))
@@ -45,7 +45,7 @@ def current_contract():
     """Read real config literals without importing/starting Isaac Sim."""
     names=['TABLE_HEIGHT','BREAD_OFFSETS','BREAD_ROTATION','SERVING_PLATE_SCALE','SERVING_PLATE_POSITION','SERVING_BREAD_CENTER_RADIUS']
     values=scalar_assignments(CFG/'assets.py',names)
-    data=json.loads((ROOT/'scenario_delivery/manifest.json').read_text())
+    data=json.loads((ROOT/'scenarios/mixed/manifest.json').read_text())
     cfg_tree=ast.parse((CFG/'bimanual_env_cfg.py').read_text())
     positions={}
     for node in ast.walk(cfg_tree):

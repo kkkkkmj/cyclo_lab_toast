@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_MANIFEST = ROOT / 'scenario_delivery/manifest.json'
+DEFAULT_MANIFEST = ROOT / 'scenarios/mixed/manifest.json'
 TASK = 'Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2'
 ATTRIBUTE = 'toast_scenario_metadata'
 

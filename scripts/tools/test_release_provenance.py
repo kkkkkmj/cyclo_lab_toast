@@ -13,7 +13,7 @@ from generate_current_toast_scenarios import current_contract
 
 class ProvenanceTests(unittest.TestCase):
     def test_every_saved_source_has_exact_path_bound_evidence(self):
-        for manifest in provenance.ROOT.glob('scenario_delivery*/manifest.json'):
+        for manifest in provenance.ROOT.glob('scenarios/*/manifest.json'):
             for path, digest in json.loads(manifest.read_text())['provenance']['source_sha256'].items():
                 self.assertEqual(hashlib.sha256(provenance.generation_source(path, digest)).hexdigest(), digest)
                 with self.assertRaises(ValueError):
@@ -21,7 +21,7 @@ class ProvenanceTests(unittest.TestCase):
 
     def test_corrupt_archive_is_rejected(self):
         path = provenance.PREFIX + 'assets.py'
-        manifest = json.loads((provenance.ROOT / 'scenario_delivery_base/manifest.json').read_text())
+        manifest = json.loads((provenance.ROOT / 'scenarios/fixed_tpb/manifest.json').read_text())
         digest = manifest['provenance']['source_sha256'][path]
         with tempfile.TemporaryDirectory() as tmp:
             archive = Path(tmp)
@@ -31,7 +31,7 @@ class ProvenanceTests(unittest.TestCase):
                 provenance.generation_source(path, digest)
 
     def test_runtime_and_historical_radius_are_separate(self):
-        manifest = provenance.ROOT / 'scenario_delivery_base_ptb/manifest.json'
+        manifest = provenance.ROOT / 'scenarios/fixed_ptb/manifest.json'
         raw = manifest.read_bytes(); data = json.loads(raw)
         self.assertEqual(data['environment_contract']['success_center_radius_m'], .02)
         runtime = provenance.runtime_contract()

@@ -154,7 +154,7 @@ repository is absent. No token/password was printed or requested in chat.
 After installing GitHub CLI and restoring network access, use browser login:
 
 ```bash
-cd /path/to/cyclo-toast-teleop
+cd /path/to/cyclo_lab_toast
 gh auth login --web
 bash scripts/tools/publish_release.sh
 ```
@@ -176,7 +176,7 @@ With the pinned external assets installed and the CPU dependencies available:
 python3 scripts/tools/check_release.py --assets
 python3 scripts/tools/run_release_cpu_tests.py --output /tmp/new-toast-cpu-report
 python3 scripts/tools/reproduce_toast_generation.py \
-  --set scenario_delivery_base_ptb --output /tmp/new-ptb-generation
+  --set scenarios/fixed_ptb --output /tmp/new-ptb-generation
 ```
 
 Output directories must be new; retain reports outside Git. This validation does

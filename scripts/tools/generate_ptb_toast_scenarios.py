@@ -20,14 +20,14 @@ from toast_scenario_geometry import footprint, hull, polygon_distance, rotate
 
 shared = fixed.shared
 ROOT = shared.ROOT
-DEFAULT_OUTPUT = ROOT / 'scenario_delivery_base_ptb'
+DEFAULT_OUTPUT = ROOT / 'scenarios/fixed_ptb'
 ORDER = ('plate', 'toaster', 'bread_shelf')
 PREFIX = 'toast_base_ptb_20261109_'
 VERSION = 'base_ptb_20261109_100'
 SEED = 2026110901
 ASSIGNMENT_SEED = 2026110902
 GROUPS = shared.GROUPS
-EXISTING = ('scenario_delivery', 'scenario_delivery_base')
+EXISTING = ('scenarios/mixed', 'scenarios/fixed_tpb')
 
 
 def reference_poses(environment):
@@ -159,7 +159,7 @@ def generate(output=DEFAULT_OUTPUT, seed=SEED, assignment_seed=ASSIGNMENT_SEED):
         raise ValueError('Output must be a NEW empty directory')
     environment, contract = shared.current_contract()
     vertices, assets = shared.geometry(environment)
-    evidence_path = ROOT / 'scenario_delivery/inputs/geometry_evidence.json'
+    evidence_path = ROOT / 'scenarios/mixed/inputs/geometry_evidence.json'
     historical_evidence = json.loads(evidence_path.read_text())
     # Retain the necessary authored support evidence without old diagnostic dumps or robot measurements.
     evidence = dict(table_support={k: historical_evidence['table_support'][k] for k in
@@ -221,7 +221,7 @@ def generate(output=DEFAULT_OUTPUT, seed=SEED, assignment_seed=ASSIGNMENT_SEED):
         extracted_table_support=evidence['table_support'], planning_table_envelope=environment['planning_table_envelope'], scenarios=entries)
     output.mkdir(parents=True, exist_ok=True); (output / 'inputs').mkdir()
     shared.dump(output / 'inputs/geometry_evidence.json', evidence)
-    shutil.copyfile(ROOT / 'scenario_delivery/inputs/table_frame.json', output / 'inputs/table_frame.json')
+    shutil.copyfile(ROOT / 'scenarios/mixed/inputs/table_frame.json', output / 'inputs/table_frame.json')
     for name, data in [('manifest.json', manifest), ('generation_config.json', config), ('distribution.json', distributions(entries))]:
         shared.dump(output / name, data)
     rows = sorted(entries, key=lambda e: (e['operator'], e['operator_index']))

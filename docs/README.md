@@ -16,7 +16,7 @@ Start with the [project README](../README.md) for installation and a first run.
 | `source/cyclo_lab/` | Environment/runtime code, robot and rack assets |
 | `scripts/` | Launchers, Quest bridge, recording tools, CPU checks and reproduction scripts |
 | `docker/` | Image and Compose configuration |
-| `scenario_delivery*` | Three fixed scenario sets, assignments and reproduction inputs |
+| [`scenarios/`](../scenarios/README.md) | Three fixed scenario sets, assignments and reproduction inputs |
 | `third_party/` | Four vendored source snapshots; no submodule initialization needed |
 | `docs/toast_quest/` | Scenario relocation metadata |
 | `docs/release/` | Provenance, audit data and historical validation evidence |

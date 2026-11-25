@@ -25,7 +25,8 @@ def main():
         parser.error('Keep transient test logs outside the checkout')
     destination.mkdir(parents=True, exist_ok=False)
     paths = {row['test'] for row in json.loads((ROOT / 'docs/release/cpu_tests.json').read_text())}
-    paths.update(('scripts/tools/test_release_provenance.py', 'scripts/tools/test_release_assets.py'))
+    paths.update(('scripts/tools/test_release_provenance.py', 'scripts/tools/test_release_assets.py',
+                  'scripts/tools/test_scenario_relocation.py'))
     results = []
     for name in sorted(paths):
         start = time.monotonic()

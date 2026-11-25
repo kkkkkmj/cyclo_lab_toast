@@ -8,6 +8,7 @@ import ast
 import hashlib
 import json
 from pathlib import Path
+from toast_scenario_paths import relocated_path
 
 ROOT = Path(__file__).resolve().parents[2]
 PREFIX = 'source/cyclo_lab/cyclo_lab/manager_based/manipulation/make_toast/config/ffw_bg2/'
@@ -32,7 +33,7 @@ def verify_fingerprint(path, expected):
     if path.startswith(('scripts/', 'source/cyclo_lab/cyclo_lab/')):
         generation_source(path, expected)
     else:
-        actual = hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+        actual = hashlib.sha256(relocated_path(ROOT, path).read_bytes()).hexdigest()
         if actual != expected:
             raise ValueError(f'Installed asset/input hash mismatch: {path}: {actual} != {expected}')
 

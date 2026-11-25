@@ -5,7 +5,7 @@
 This separate [manifest](manifest.json) contains 100 initial object configurations for collecting
 manipulation demonstrations around **one fixed reference configuration**. All scenarios use
 **Toaster → Plate → Bread Rack** from robot left to right. The original
-[100 six-order scenarios](../scenario_delivery/README.md) and default manifest are unchanged.
+[100 six-order scenarios](../mixed/README.md) and default manifest are unchanged.
 These are placement data, not recorded demonstrations. Select an existing ID; reset restores it.
 
 ## Scenario Design
@@ -83,14 +83,14 @@ only the toaster root pose changes. The rack's known settling issue remains unre
 ### Reproduction
 
 Generation seed: **20261109**. Assignment seed: **20261110**. The
-[generator](../scripts/tools/generate_base_toast_scenarios.py) refuses a nonempty output directory.
+[generator](../../scripts/tools/generate_base_toast_scenarios.py) refuses a nonempty output directory.
 Run from the checkout root with Python containing numpy, scipy, torch, pxr (USD), and Shapely 2.x:
 
 ```bash
 export TOAST_PYTHON=python3
 MJ_BASE_OUTPUT=$(mktemp -d /tmp/toast-base-rebuild.XXXXXX)
 "$TOAST_PYTHON" scripts/tools/reproduce_toast_generation.py \
-  --set scenario_delivery_base --output "$MJ_BASE_OUTPUT"
+  --set scenarios/fixed_tpb --output "$MJ_BASE_OUTPUT"
 "$TOAST_PYTHON" scripts/tools/test_base_toast_delivery.py
 ```
 
@@ -105,8 +105,8 @@ all tracked in this branch. The reproduction wrapper uses the exact SHA256-verif
 
 ## Installation and operation
 
-See the [project guide](../README.md) for installation, Quest pairing, recording and playback.
-Select this directory’s manifest explicitly; the base recording launcher always uses `scenario_delivery_base`.
+See the [project guide](../../README.md) for installation, Quest pairing, recording and playback.
+Select this directory’s manifest explicitly; the base recording launcher always uses `scenarios/fixed_tpb`.
 
 ## Operator Assignments
 
@@ -150,7 +150,7 @@ Mean offsets below use **mm, mm, degrees** for each (ΔX, ΔY, Δyaw) triple.
 The task remains `Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2`. These commands do not record
 demonstrations. Optional Quest `--record-dir` writes diagnostic HDF5 with **diagnostic=true,
 success=false**, group/parent indices, selected ID, manifest hash and snapshot. This is not validated
-successful imitation-learning demonstration data. See [Changes](../README.md) for the control and
+successful imitation-learning demonstration data. See [Changes](../../README.md) for the control and
 recording distinctions. No physical settings or task success criteria are changed by this delivery.
 
 ## Validation
@@ -198,13 +198,13 @@ cd "$REPO"
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8000/scenario_delivery_base/overview_cards.html`.
+Open `http://127.0.0.1:8000/scenarios/fixed_tpb/overview_cards.html`.
 To rebuild only these cards from the saved manifest and current assets:
 
 ```bash
 python3 scripts/tools/build_toast_overview_cards.py \
-  --delivery scenario_delivery_base \
-  --table-source scenario_delivery_base/inputs/table_frame.json
+  --delivery scenarios/fixed_tpb \
+  --table-source scenarios/fixed_tpb/inputs/table_frame.json
 ```
 
 
@@ -235,7 +235,7 @@ with Matplotlib and Pillow additionally installed:
 export TOAST_PYTHON=python3
 "$TOAST_PYTHON" -m pip install matplotlib==3.10.8 pillow==12.2.0
 "$TOAST_PYTHON" scripts/tools/render_base_scenario_pngs.py \
-  --delivery scenario_delivery_base --output scenario_delivery_base/images
+  --delivery scenarios/fixed_tpb --output scenarios/fixed_tpb/images
 ```
 
 The renderer rebuilds the shared HTML geometry in a temporary directory, verifies it against the saved
@@ -243,4 +243,4 @@ cards and current assets, and checks all 700 pose CSV rows and 100 assignments b
 It does not modify the manifest, assignments, poses or existing HTML. PNG metadata records the selected
 IDs, manifest hash and common coordinate bounds; individual PNGs also contain the exact object poses.
 
-Current release CPU versions and fresh independent-clone results are recorded in [release validation](../docs/release/VALIDATION.md) and [cpu_environment.json](../docs/release/cpu_environment.json).
+Current release CPU versions and fresh independent-clone results are recorded in [release validation](../../docs/release/VALIDATION.md) and [cpu_environment.json](../../docs/release/cpu_environment.json).

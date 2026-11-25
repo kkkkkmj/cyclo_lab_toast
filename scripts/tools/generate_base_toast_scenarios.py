@@ -19,7 +19,7 @@ from toast_scenario_geometry import footprint, hull, polygon_distance, qmul, rot
 from build_toast_overview_cards import build as build_cards
 
 ROOT = shared.ROOT
-DEFAULT_OUTPUT = ROOT / 'scenario_delivery_base'
+DEFAULT_OUTPUT = ROOT / 'scenarios/fixed_tpb'
 SEED = 20261109
 ASSIGNMENT_SEED = 20261110
 PREFIX = 'toast_base_20261109_'
@@ -117,7 +117,7 @@ def generate(output=DEFAULT_OUTPUT, seed=SEED, assignment_seed=ASSIGNMENT_SEED):
     base,contract=shared.current_contract()
     assert base['baseline']['toaster']['position_m'][1]>base['baseline']['plate']['position_m'][1]>base['baseline']['bread_shelf']['position_m'][1]
     vertices,assets=shared.geometry(base)
-    evidence_path=ROOT/'scenario_delivery/inputs/geometry_evidence.json'
+    evidence_path=ROOT/'scenarios/mixed/inputs/geometry_evidence.json'
     evidence=json.loads(evidence_path.read_text())
     reference=reference_poses(base)
     rng=random.Random(seed);entries=[];seen=set();rejections=Counter();attempts=0;rejected=0
@@ -158,11 +158,11 @@ def generate(output=DEFAULT_OUTPUT, seed=SEED, assignment_seed=ASSIGNMENT_SEED):
         assignments_file='assignments.csv',baseline=base['baseline'],baseline_bread=base['baseline_bread'],scales=base['scales'],units=base['units'],
         generation=config,environment_contract=contract,static_validation=static,
         provenance=dict(source_sha256={str(p.relative_to(ROOT)):shared.sha(p) for p in sources},asset_sha256=assets,
-                        existing_manifest_sha256=shared.sha(ROOT/'scenario_delivery/manifest.json'),geometry_evidence_sha256=shared.sha(evidence_path)),
+                        existing_manifest_sha256=shared.sha(ROOT/'scenarios/mixed/manifest.json'),geometry_evidence_sha256=shared.sha(evidence_path)),
         extracted_table_support=evidence['table_support'],planning_table_envelope=base['planning_table_envelope'],scenarios=entries)
     output.mkdir(parents=True,exist_ok=True);(output/'inputs').mkdir()
     for name in ('geometry_evidence.json','table_frame.json'):
-        shutil.copyfile(ROOT/'scenario_delivery/inputs'/name,output/'inputs'/name)
+        shutil.copyfile(ROOT/'scenarios/mixed/inputs'/name,output/'inputs'/name)
     for name,value in [('manifest.json',manifest),('generation_config.json',config),('distribution.json',shared.summaries(entries))]:shared.dump(output/name,value)
     rows=sorted(entries,key=lambda e:(e['operator'],e['operator_index']))
     with (output/'assignments.csv').open('w',newline='') as stream:

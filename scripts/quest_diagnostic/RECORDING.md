@@ -1,6 +1,6 @@
 # Quest demonstration and MP4 recording
 
-This workflow selects **scenario_delivery_base / operator_B_1 / group_index 1**:
+This workflow selects **scenarios/fixed_tpb / operator_B_1 / group_index 1**:
 `toast_base_20261109_025`. It preserves the selected layout and records each accepted X-started
 teleoperation episode as Isaac Lab HDF5 data plus a simulation-camera MP4. The diagnostic JSONL
 trace is separate from the demonstration data. Results are observed task verdicts, not a guarantee
@@ -13,7 +13,7 @@ process needs h5py, NumPy, Pillow and `imageio-ffmpeg==0.6.0`; the last is decla
 package dependencies and provides the FFmpeg binary. Rebuild the separate image after updating:
 
 ```bash
-export REPO=/path/to/cyclo-toast-teleop
+export REPO=/path/to/cyclo_lab_toast
 cd "$REPO"
 docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
   -f docker/docker-compose.yaml -f docker/compose.mj.yaml --profile base build cyclo_lab
@@ -31,7 +31,7 @@ Replace the clone path and `YOUR_PC_LAN_IP`; use an unused HTTPS port reachable 
 If an appropriate server already runs, use its bridge path consistently in both terminals.
 
 ```bash
-export REPO=/path/to/cyclo-toast-teleop
+export REPO=/path/to/cyclo_lab_toast
 export QUEST_HOST=YOUR_PC_LAN_IP
 export QUEST_PORT=8766
 cd "$REPO"
@@ -49,12 +49,12 @@ Reload the current page before entering VR when client/server builds differ.
 
 Use your actual clone path and desktop display/cookie file. The host-side
 [launcher](../record_quest_base.py) uses GROUP and INDEX for both scenario selection and storage.
-It defaults to `scenario_delivery_base`, `operator_B_1`, index 1. INDEX must be 1–25.
+It defaults to `scenarios/fixed_tpb`, `operator_B_1`, index 1. INDEX must be 1–25.
 Each invocation creates a new run; it leaves `recording/` absent for the recorder to create.
 MP4 recording starts automatically with HDF5; there is no separate video-enable flag.
 
 ```bash
-export REPO=/path/to/cyclo-toast-teleop
+export REPO=/path/to/cyclo_lab_toast
 export DISPLAY=:0  # Replace with your desktop display.
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"  # Must be an existing desktop cookie file.
 cd "$REPO"

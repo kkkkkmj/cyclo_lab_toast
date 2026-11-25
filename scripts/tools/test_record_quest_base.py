@@ -51,7 +51,7 @@ class BaseRecordingLaunchTests(unittest.TestCase):
             self.assertIsNone(control['linear_speed'])
 
     def test_indices_and_group_storage_follow_actual_assignment(self):
-        with (ROOT / 'scenario_delivery_base/assignments.csv').open() as stream:
+        with (ROOT / 'scenarios/fixed_tpb/assignments.csv').open() as stream:
             rows = list(csv.DictReader(stream))
         for group in launch.GROUPS:
             for index in (1, 2, 25):
@@ -95,7 +95,7 @@ class BaseRecordingLaunchTests(unittest.TestCase):
         for key, value in {'--control-profile': 'practice', '--position-scale': '1', '--rotation-scale': '1',
                            '--workspace': 'off', '--max-target-lead': '0.12', '--max-angular-lead-deg': '45',
                            '--tracking-stall-seconds': '2', '--preview-hz': '15', '--seed': '1',
-                           '--record-seconds': '0', '--scenario_manifest': 'scenario_delivery_base/manifest.json',
+                           '--record-seconds': '0', '--scenario_manifest': 'scenarios/fixed_tpb/manifest.json',
                            '--record-dir': first['container_run'] + '/recording',
                            '--diagnostic-log': first['container_run'] + '/diagnostic.jsonl'}.items():
             self.assertEqual(cmd[cmd.index(key) + 1], value)

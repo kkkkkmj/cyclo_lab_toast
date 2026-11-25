@@ -143,6 +143,6 @@ def generate(delivery, output):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--delivery',type=Path,default=ROOT/'scenario_delivery_base')
+    parser.add_argument('--delivery',type=Path,default=ROOT/'scenarios/fixed_tpb')
     parser.add_argument('--output',type=Path,help='Defaults to DELIVERY/images')
     args=parser.parse_args();generate(args.delivery,args.output or args.delivery/'images')

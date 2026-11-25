@@ -24,7 +24,7 @@ from tools.view_make_toast_scenario import GROUPS, resolve_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTAINER_ROOT = Path('/workspace/cyclo_lab')
-MANIFEST = Path('scenario_delivery_base/manifest.json')
+MANIFEST = Path('scenarios/fixed_tpb/manifest.json')
 BRIDGE = Path('logs/quest_toast_recording')
 
 

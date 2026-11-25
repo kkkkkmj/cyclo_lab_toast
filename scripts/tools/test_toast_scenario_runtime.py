@@ -44,7 +44,7 @@ class RuntimeContract(unittest.TestCase):
 
     def test_assignments_match_manifest_in_order(self):
         data = m.load_manifest()
-        with (ROOT/'scenario_delivery/assignments.csv').open() as f:
+        with (ROOT/'scenarios/mixed/assignments.csv').open() as f:
             rows = list(csv.DictReader(f))
         self.assertEqual(Counter(r['operator'] for r in rows), {'operator_A': 50, 'operator_B': 50})
         self.assertEqual(len({r['scenario_id'] for r in rows}), 100)
@@ -102,7 +102,7 @@ class OperatorSelection(unittest.TestCase):
         return self.viewer.build_parser().parse_args(tokens)
 
     def test_all_operator_entries_in_csv_order(self):
-        with (ROOT/'scenario_delivery/assignments.csv').open() as f:rows=list(csv.DictReader(f))
+        with (ROOT/'scenarios/mixed/assignments.csv').open() as f:rows=list(csv.DictReader(f))
         for op in ('operator_A', 'operator_B'):
             expected=[r['scenario_id'] for r in rows if r['operator']==op]
             self.assertEqual(len(expected),50)
@@ -125,11 +125,11 @@ class OperatorSelection(unittest.TestCase):
         with self.assertRaises(ValueError):self.viewer.resolve_selection(self.args('--scenario_id','unknown'))
 
     def test_assignment_integrity_and_explicit_manifest(self):
-        with (ROOT/'scenario_delivery/assignments.csv').open() as f:rows=list(csv.DictReader(f))
+        with (ROOT/'scenarios/mixed/assignments.csv').open() as f:rows=list(csv.DictReader(f))
         with tempfile.TemporaryDirectory() as tmp:
             manifest=Path(tmp)/'explicit.json';manifest.write_text(json.dumps(m.load_manifest()))
             import shutil
-            shutil.copy2(ROOT/'scenario_delivery/assignments.csv',Path(tmp)/'assignments.csv')
+            shutil.copy2(ROOT/'scenarios/mixed/assignments.csv',Path(tmp)/'assignments.csv')
             args=self.args('--operator','operator_B','--scenario_index','50','--scenario_manifest',str(manifest))
             self.assertEqual(self.viewer.resolve_selection(args),[r['scenario_id'] for r in rows if r['operator']=='operator_B'][-1])
             path=Path(tmp)/'assignments.csv'
@@ -153,7 +153,7 @@ class OperatorSelection(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             checkout=Path(tmp)/'renamed checkout';other=Path(tmp)/'unrelated';other.mkdir()
             paths=['scripts/tools/view_make_toast_scenario.py',str(PATH.relative_to(ROOT)),
-                   'scenario_delivery/manifest.json','scenario_delivery/assignments.csv']
+                   'scenarios/mixed/manifest.json','scenarios/mixed/assignments.csv']
             for rel in paths:
                 target=checkout/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,target)
             spec=importlib.util.spec_from_file_location('relocated_viewer',checkout/paths[0])
@@ -166,7 +166,7 @@ class OperatorSelection(unittest.TestCase):
                             tokens=['--operator',op,'--scenario_index',i]
                             expected=self.viewer.resolve_selection(self.args(*tokens))
                             self.assertEqual(viewer.resolve_selection(viewer.build_parser().parse_args(tokens)),expected)
-                            manifest=checkout/'scenario_delivery/manifest.json'
+                            manifest=checkout/'scenarios/mixed/manifest.json'
                             for explicit in (str(manifest),os.path.relpath(manifest,cwd)):
                                 args=viewer.build_parser().parse_args(tokens+['--scenario_manifest',explicit])
                                 self.assertEqual(viewer.resolve_selection(args),expected)

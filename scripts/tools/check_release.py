@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from toast_scenario_paths import SCENARIO_PATHS, relocated_path
 
 ROOT = Path(__file__).resolve().parents[2]
 GROUPS = ['operator_A_1', 'operator_A_2', 'operator_B_1', 'operator_B_2']
@@ -18,8 +19,8 @@ def main():
     parser.add_argument('--assets', action='store_true')
     args = parser.parse_args()
     evidence = json.loads((ROOT / 'docs/release/integrity.json').read_text())
-    for name in ('scenario_delivery', 'scenario_delivery_base', 'scenario_delivery_base_ptb'):
-        manifest = ROOT / name / 'manifest.json'
+    for name in SCENARIO_PATHS:
+        manifest = relocated_path(ROOT, name) / 'manifest.json'
         assert hashlib.sha256(manifest.read_bytes()).hexdigest() == evidence[name]['manifest_sha256'], name
         entries = json.loads(manifest.read_text())['scenarios']
         assert len(entries) == len({e['id'] for e in entries}) == 100

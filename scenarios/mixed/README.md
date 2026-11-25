@@ -88,7 +88,7 @@ stable support; settling was observed in the first layout and remains under diag
 
 ### Reproduction
 
-The [generator](../scripts/tools/generate_current_toast_scenarios.py) and
+The [generator](../../scripts/tools/generate_current_toast_scenarios.py) and
 [generation_config.json](generation_config.json) define the settings above. Use generation seed
 **20261108** and assignment seed **20261109** (generation seed + 1).
 After installation below, run from the checkout root using Python with numpy/scipy/torch/pxr:
@@ -98,7 +98,7 @@ export TOAST_PYTHON=python3
 MJ_SCENARIO_OUTPUT=$(mktemp -d /tmp/toast-scenarios-rebuild.XXXXXX)
 "$TOAST_PYTHON" scripts/tools/generate_current_toast_scenarios.py \
   --seed 20261108 \
-  --evidence scenario_delivery/inputs/geometry_evidence.json \
+  --evidence scenarios/mixed/inputs/geometry_evidence.json \
   --output "$MJ_SCENARIO_OUTPUT"
 "$TOAST_PYTHON" scripts/tools/test_current_toast_delivery.py
 ```
@@ -108,12 +108,12 @@ using prior pose-signature hashes from `inputs/generation_history.json` for dupl
 The test command checks the supplied delivery, not the temporary regenerated output.
 The saved manifest records generation-time +15 mm sources; current +35 mm sources and output changes
 and current 40mm runtime metadata produce different provenance hashes. Pose/assignment reproduction is distinct from byte-for-byte file
-reproduction. Historical manifest hashes remain unchanged. Exact path-bound generation source evidence is retained in [the generation source index](../docs/release/generation_sources/index.json); the [relocation record](../docs/toast_quest/SCENARIO_RELOCATION.json) describes the earlier migration only. It is not a current runtime fingerprint.
+reproduction. Historical manifest hashes remain unchanged. Exact path-bound generation source evidence is retained in [the generation source index](../../docs/release/generation_sources/index.json); the [relocation record](../../docs/toast_quest/SCENARIO_RELOCATION.json) describes the earlier migration only. It is not a current runtime fingerprint.
 
 ## Installation and operation
 
-See the [project guide](../README.md) for installation, Quest pairing, recording and playback.
-Select this directory’s manifest explicitly; the base recording launcher always uses `scenario_delivery_base`.
+See the [project guide](../../README.md) for installation, Quest pairing, recording and playback.
+Select this directory’s manifest explicitly; the base recording launcher always uses `scenarios/fixed_tpb`.
 
 ## Operator Assignments
 
@@ -166,7 +166,7 @@ from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 # Run from the repository root. Use the ID from the assignment table.
 scenario_id = "toast_v20261108_097"
-manifest = Path("scenario_delivery/manifest.json").resolve()
+manifest = Path("scenarios/mixed/manifest.json").resolve()
 task = "Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2"
 cfg = parse_env_cfg(task, device="cuda:0", num_envs=1)
 cfg.scenario_id = scenario_id
@@ -185,7 +185,7 @@ successful training demonstration. Saved-state video also does not establish act
 The supplied 100 IDs are unique, with 25 per group and 50 per operator. CPU checks matched all 200
 group/parent selections, 100 metadata round trips, 700 pose CSV rows, and 100 card entries.
 These checks do not establish PhysX stability, robot reachability or full toast-task success.
-The current rack's settling remains under diagnosis. See [release validation](../docs/release/VALIDATION.md) for current checks; personal historical measurement reports are not distributed.
+The current rack's settling remains under diagnosis. See [release validation](../../docs/release/VALIDATION.md) for current checks; personal historical measurement reports are not distributed.
 
 ## Files
 
@@ -202,12 +202,12 @@ Download the card HTML and open it in a web browser. It is self-contained and do
 connection. GitHub's file view does not run it. Alternatively serve the checkout locally:
 
 ```bash
-export REPO=/path/to/cyclo-toast-teleop
+export REPO=/path/to/cyclo_lab_toast
 cd "$REPO"
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8000/scenario_delivery/overview_cards.html`.
+Open `http://127.0.0.1:8000/scenarios/mixed/overview_cards.html`.
 These are static layout diagrams, not simulator images. Card rebuilding uses the compact
 `inputs/table_frame.json` extracted from the original table snapshot; no private log path is required.
 `inputs/geometry_evidence.json` supplies the generation geometry. `inputs/generation_history.json`

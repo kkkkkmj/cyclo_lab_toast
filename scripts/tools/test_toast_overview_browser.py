@@ -1,7 +1,7 @@
 import asyncio,json,subprocess,tempfile,time,base64
 from pathlib import Path
 import websockets
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'scenario_delivery';checks={}
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'scenarios/mixed';checks={}
 async def test():
  with tempfile.TemporaryDirectory(prefix='toast-cards-chrome-') as profile:
   log=open('/tmp/toast-cards-chrome.log','w')

@@ -1,5 +1,12 @@
 # Provenance, assets and release changes
 
+> Historical scope: the distribution snapshot and publication statements below
+> describe the creation of `cyclo-toast-teleop`. `cyclo_lab_toast` preserves its
+> complete available Git history through `7fc8b5ebfa33de040f70cb5fa3552044f6e7c787`.
+> The scenario directory refactor preserves the saved manifests, generation
+> inputs and source archive byte-for-byte. Historical JSON paths remain evidence;
+> current paths are documented in [the scenario guide](../../scenarios/README.md).
+
 ## Source relationship
 
 This is a new, history-free distribution snapshot of the latest working files in the development checkout, including uncommitted files. Source HEAD: `d8ac88d` (full SHA in `source_snapshot.json`). Direct toast baseline: [badajhong/cyclo_lab, 5f5086d11f664494119086de30a9e925b12022ad](https://github.com/badajhong/cyclo_lab/commit/5f5086d11f664494119086de30a9e925b12022ad). Its direct child is `761c8ac77ccbe7841966e535fa7202d7be83c7a1`. The local `upstream` URL names badajhong; local ancestry checks confirm this baseline. Remote freshness could not be checked from the shell.
@@ -83,7 +90,7 @@ scenario files and never consults a developer repository or Git cache:
 
 ```bash
 python3 scripts/tools/reproduce_toast_generation.py \
-  --set scenario_delivery_base_ptb --output /tmp/new-ptb-generation
+  --set scenarios/fixed_ptb --output /tmp/new-ptb-generation
 ```
 
 The output must be new/empty. PTB's nine generated files are compared byte-for-byte
