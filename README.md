@@ -4,12 +4,20 @@
 
 **Direct Toast Baseline:** https://github.com/badajhong/cyclo_lab
 
+**Direct Toast Baseline Commit:** [`5f5086d11f664494119086de30a9e925b12022ad`](https://github.com/badajhong/cyclo_lab/commit/5f5086d11f664494119086de30a9e925b12022ad)
+
 An Isaac Sim toast preparation environment with Meta Quest bimanual teleoperation,
 gripper control and demonstration recording. It combines a simulated toast cycle,
 three reproducible scenario sets, and HDF5/video capture for reviewing attempts.
 Serving v2 succeeds when at least one heated slice is placed on the plate after
 pop-up, with the lever released and the required placement checks satisfied.
 See [task details](docs/TASK.md) and the [documentation index](docs/README.md).
+
+> **Pre-publication status:** keep this repository private until redistribution
+> rights for the included bread rack are established. Upload authorization is not
+> evidence of the copyright holder's permission. Fresh network installation,
+> GPU/GUI execution, live Quest control, recording and GPU replay remain unverified
+> in this review. See the [current publication review](docs/PREPUBLICATION_REVIEW.md).
 
 ## Project lineage and scope
 
@@ -31,6 +39,13 @@ This repository preserves that distribution's Git history through
 existing corpora under `scenarios/`, adapt paths and historical reproduction,
 and improve documentation. They introduce no new layouts, control/task behavior,
 assets or recording format. See the [scenario guide](scenarios/README.md).
+
+The direct-baseline comparison confirms that `FFW_BG2.py`, the selected robot
+USD, `arm_action.py`, `gripper_action.py`, task `recorders.py` and the standard
+`record_demos.py` are reused unchanged. Toast cycle/success and replay code are
+adaptations. Quest transport/recording integration and scenario tools were added
+relative to that baseline; this does not establish exclusive authorship or a
+from-scratch simulation/recording framework. See the [contribution table](docs/PREPUBLICATION_REVIEW.md#attribution).
 
 ## Requirements
 
@@ -71,7 +86,13 @@ docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
 ```
 
 Keep both Compose files. The host checkout is mounted at `/workspace/cyclo_lab`
-and the image is `cyclo-toast-teleop:isaacsim-5.1.0`.
+and the image is `cyclo-toast-teleop:isaacsim-5.1.0`. These inherited Docker names
+are intentional; the GitHub repository and checkout are named `cyclo_lab_toast`.
+They can collide with an existing baseline deployment. Before building or running,
+inspect existing projects/images and use the [isolated validation procedure](docs/LIVE_VALIDATION.md)
+if the baseline environment is already present. The default Compose configuration
+uses host networking/IPC and all GPUs; a distinct container name alone does not
+isolate GPU load or ports.
 
 ## GUI preview
 

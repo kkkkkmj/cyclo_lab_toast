@@ -4,6 +4,8 @@ Start with the [project README](../README.md) for installation and a first run.
 
 | Guide | Contents |
 |---|---|
+| [Current publication review](PREPUBLICATION_REVIEW.md) | Rights, provenance, fresh-checkout results and remaining release gates |
+| [Live validation procedure](LIVE_VALIDATION.md) | Operator-assisted isolated GUI, Quest, recording and replay checks |
 | [Assets](ASSETS.md) | Included files, RoboDojo downloads and NVIDIA dependencies |
 | [Task](TASK.md) | Serving v2 cycle, exact success predicates and control settings |
 | [Recording](RECORDING.md) | Scenario selection, output structure, timing and replay |

@@ -148,9 +148,8 @@ Mean offsets below use **mm, mm, degrees** for each (ΔX, ΔY, Δyaw) triple.
 ## Using the Scenarios for Data Collection
 
 The task remains `Cyclo-Make-Toast-FFW-BG2-Bimanual-IK-Rel-v2`. These commands do not record
-demonstrations. Optional Quest `--record-dir` writes diagnostic HDF5 with **diagnostic=true,
-success=false**, group/parent indices, selected ID, manifest hash and snapshot. This is not validated
-successful imitation-learning demonstration data. See [Changes](../../README.md) for the control and
+demonstrations. Optional Quest `--record-dir` writes diagnostic HDF5 with **diagnostic=true** and the observed task success label, group/parent indices, selected ID, manifest hash and snapshot. This is not validated
+successful imitation-learning demonstration data. See [the project guide](../../README.md) for the control and
 recording distinctions. No physical settings or task success criteria are changed by this delivery.
 
 ## Validation
@@ -193,7 +192,7 @@ are unverified. Rejection filters and balanced assignments must not be interpret
 Download and open the card HTML directly, or serve the checkout:
 
 ```bash
-export REPO=/path/to/cyclo-toast-teleop
+export REPO=/path/to/cyclo_lab_toast
 cd "$REPO"
 python3 -m http.server 8000 --bind 127.0.0.1
 ```

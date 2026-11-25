@@ -53,5 +53,5 @@ the FFW-SG2 embodiment and action configuration.
 ## Distribution asset and source audit
 
 See [release provenance](docs/release/PROVENANCE.md) for inherited notices,
-external RoboDojo/NVIDIA acquisition, and the excluded rack whose redistribution
+external RoboDojo/NVIDIA acquisition, and the included rack whose redistribution
 permission is not established. No new blanket license is assigned to those assets.
