@@ -1,5 +1,11 @@
 # cyclo_lab_toast
 
+<p align="center">
+  <img src="docs/media/toast_environment.png"
+       alt="Cyclo Lab Toast simulation environment"
+       width="850">
+</p>
+
 **Original Framework:** https://github.com/ROBOTIS-GIT/cyclo_lab
 
 **Direct Toast Baseline:** https://github.com/badajhong/cyclo_lab
