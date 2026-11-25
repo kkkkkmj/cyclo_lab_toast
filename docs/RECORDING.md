@@ -1,6 +1,6 @@
 # Scenarios, recording and playback
 
-Run the [Quest setup](../README.md#quest-connection-and-demonstration-recording) first. Run the commands below in a **host terminal**, with the repository root as the current directory.
+Run the [Quest setup](../README.md#optional-vr-teleoperation-and-demonstration-recording) first. Run the commands below in a **host terminal**, with the repository root as the current directory.
 
 | Directory | Robot left → right (+Y → −Y) | Count |
 |---|---|---:|

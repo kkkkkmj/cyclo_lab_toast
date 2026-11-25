@@ -101,7 +101,7 @@ roundoff. This CPU environment is separate from the simulator environment below.
 The test command checks the checked-in delivery, not the temporary output.
 
 Generation reads the original delivery's baseline, geometry evidence and duplicate signatures,
-all tracked in this branch. The reproduction wrapper uses the exact SHA256-verified archived generation sources and installed pinned assets; no original worktree is consulted. The saved source/asset hashes describe generation time, including the historical 20mm radius, not the current strict 40mm runtime. The authorized external rack and downloaded object assets are prerequisites. The two files in `inputs/` retain the authored geometry evidence and table snapshot.
+all tracked in this branch. The reproduction wrapper uses the exact SHA256-verified archived generation sources and installed pinned assets; no original worktree is consulted. The saved source/asset hashes describe generation time, including the historical 20mm radius, not the current strict 40mm runtime. The included rack and downloaded object assets are prerequisites. The two files in `inputs/` retain the authored geometry evidence and table snapshot.
 
 ## Installation and operation
 
@@ -152,28 +152,12 @@ demonstrations. Optional Quest `--record-dir` writes diagnostic HDF5 with **diag
 successful imitation-learning demonstration data. See [the project guide](../../README.md) for the control and
 recording distinctions. No physical settings or task success criteria are changed by this delivery.
 
-## Validation
+## Usage limitations
 
-CPU checks cover 100 unique IDs, all nine offset bounds and fixed object order, four groups of 25,
-A/B totals of 50, 700 pose CSV rows, rigid rack-relative bread poses, and all group/parent selections.
-Current asset bounds pass static support/non-overlap checks. At every plate pose, a constructed
-terminal-state fixture can satisfy the existing success predicate's placement checks; this does not
-establish a feasible robot trajectory or a successful task execution.
-
-Cards are generated through the shared current USD/configuration projection path. Their IDs,
-assignments, poses and asset hashes are checked against the manifest and current files; projected
-outer hulls are checked against transformed current mesh vertices, accounting only for display
-simplification/rounding. The historical cards were also audited: their asset hashes match current assets and their outer
-hulls agree with current mesh projections within 1.58 micrometres. This audit does not establish
-identical internal SVG paths or explain every previously observed visual difference. Historical cards
-remain unchanged; the new cards are generated afresh from current assets.
-These diagrams are not simulator renders or collision meshes. A headless Chrome check could not
-start because the sandbox denied an operation; browser rendering and interaction remain unverified
-for this generated file.
-
-**PhysX, GUI and VR runtime validation has not been performed for this set.** Rack settling remains
-unresolved. Robot reachability, collision-free manipulation, dynamic support and full-task success
-are unverified. Rejection filters and balanced assignments must not be interpreted as such validation.
+Layout constraints and balanced assignments do not guarantee physical stability,
+robot reachability or collision-free manipulation. Inspect rack/bread settling
+before collection; see [troubleshooting](../../docs/TROUBLESHOOTING.md#scenario-settling-and-control).
+Overview cards show projected geometry, not simulator renders or collision meshes.
 
 ## Files
 
@@ -242,4 +226,4 @@ cards and current assets, and checks all 700 pose CSV rows and 100 assignments b
 It does not modify the manifest, assignments, poses or existing HTML. PNG metadata records the selected
 IDs, manifest hash and common coordinate bounds; individual PNGs also contain the exact object poses.
 
-Current release CPU versions and fresh independent-clone results are recorded in [release validation](../../docs/release/VALIDATION.md) and [cpu_environment.json](../../docs/release/cpu_environment.json).
+Reproduction dependency versions are recorded in [cpu_environment.json](../../docs/release/cpu_environment.json).

@@ -179,26 +179,12 @@ training demonstrations. Success labels use the existing pre-reset outcome polic
 and `training_ready=false` remain. Recorded success does not certify training quality or replay fidelity.
 See [recording format and controls](../../scripts/quest_diagnostic/RECORDING.md) for details.
 
-## Validation
+## Usage limitations
 
-CPU checks cover all 100 unique IDs, both existing sets' ID/pose disjointness, nine offset bounds,
-PTB order, group/parent indices, 700 pose rows, current authored-geometry support/separation, and
-rigid rack-relative poses for all four breads. The real selection and loader functions, reset
-function with mocked simulator writes, and recording/replay metadata path are exercised for this
-manifest. For every plate pose, a constructed terminal-state fixture can satisfy the unchanged
-success predicate for each heated bread ID; unheated bread fails. This is a logical check, not a
-robot solution or a runtime reset test.
-
-All nine generated data/card/input files reproduce byte-for-byte with the same seeds in a separate
-temporary folder. HTML payloads and PNG metadata match the manifest, assignments and poses. Card
-outer hulls and rack-top geometry are compared with direct current-asset projections; display-only
-simplification/rounding is distinguished from physical tolerances. PNGs use the same card geometry
-path. Representative individual and group images were inspected for text overlap and clipping.
-
-**PhysX, GUI, Quest, cooked-collider stability and robot reachability are unverified for this set.**
-The known rack-settling issue remains unresolved. Static geometry and distribution balance are not
-evidence of physical stability, a collision-free trajectory or equal manipulation difficulty.
-HTML interaction/browser rendering is also unverified in this restricted execution environment.
+Layout constraints and balanced assignments do not guarantee physical stability,
+robot reachability or collision-free manipulation. Inspect rack/bread settling
+before collection; see [troubleshooting](../../docs/TROUBLESHOOTING.md#scenario-settling-and-control).
+Overview cards show projected geometry, not simulator renders or collision meshes.
 
 ## Files
 
@@ -259,4 +245,4 @@ The renderer checks fresh geometry against the saved HTML, assignments and all p
 rendering. It leaves the manifest, CSVs and HTML unchanged. PNG metadata records IDs, the manifest
 hash and common coordinate bounds; individual PNGs also contain exact poses and group indices.
 
-Current release CPU versions and fresh independent-clone results are recorded in [release validation](../../docs/release/VALIDATION.md) and [cpu_environment.json](../../docs/release/cpu_environment.json).
+Reproduction dependency versions are recorded in [cpu_environment.json](../../docs/release/cpu_environment.json).

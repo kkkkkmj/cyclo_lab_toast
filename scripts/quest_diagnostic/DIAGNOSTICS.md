@@ -83,16 +83,10 @@ and `writer_finalize_ms`. Worker totals are episode-cumulative, separate from th
 per-loop intervals. `ffmpeg_send_ms` includes pipe writes/backpressure; it does not isolate the FFmpeg
 process's codec execution. Final encoder drain may happen at close. No per-frame GPU profiler is used.
 
-## Cost and validation
+## Logging overhead
 
 JSONL uses compact serialization and a bounded 64 KiB stream buffer, with explicit flush at roughly
 one-second intervals and on close (buffer capacity can trigger writes sooner). It does not flush or
 fsync every row. A crash can lose buffered tail data. Detailed before/after snapshots are emitted on
 transitions rather than duplicated on every unchanged decision; joint diagnostics retain the existing
 2 Hz cap. The logger adds neither full image copies nor new sensor samples.
-
-CPU tests execute the real launcher's loop with fake environment I/O, cover RUNNING inactive transitions,
-tracking-stop early exits, terminal-step timing, WAITING, exact HDF timestamp matching, and unchanged
-control actions. Recorder tests use real MP4 encoding/decoding and check queue/timing metadata and
-record/export stage counters. These are not live PhysX/Quest tests, and actual instrumentation overhead
-on the GPU host remains unmeasured. Running processes and existing recordings are not modified.

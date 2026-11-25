@@ -50,8 +50,8 @@ ROS installation in the Isaac Sim Python environment.
 Cyclo Lab reuses the upstream Galileo scene, task, and metrics while supplying
 the FFW-SG2 embodiment and action configuration.
 
-## Distribution asset and source audit
+## Source and asset references
 
-See [release provenance](docs/release/PROVENANCE.md) for inherited notices,
-external RoboDojo/NVIDIA acquisition, and the included rack whose redistribution
-permission is not established. No new blanket license is assigned to those assets.
+See [source provenance](docs/release/PROVENANCE.md) for inherited notices and
+[asset setup](docs/ASSETS.md) for included assets and external RoboDojo/NVIDIA acquisition.
+External assets retain their own terms.

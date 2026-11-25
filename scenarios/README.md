@@ -96,11 +96,9 @@ current scenario folder name. HDF5 structure and success labels are unchanged.
 | Fixed TPB | 20261109 | 20261110 |
 | Fixed PTB | 2026110901 | 2026110902 |
 
-The directory migration preserves every non-README scenario file byte-for-byte,
-including manifests, configurations, assignments, poses, HTML, images and inputs.
-Only the detailed README paths/links change. Generation-time hashes and paths are
-historical evidence, not current runtime paths. The immutable source archive,
-release integrity inventory and earlier relocation records retain their old names.
+Generation-time hashes and paths describe the original generation environment,
+not current runtime paths. The source archive and integrity inventory retain
+the historical names below; do not rewrite saved manifests to change those paths.
 
 | Historical prefix | Current directory |
 |---|---|
@@ -140,4 +138,3 @@ Each set keeps `README.md`, `ASSIGNMENTS.md`, `assignments.csv`, `distribution.j
 `generation_config.json`, `manifest.json`, `overview_cards.html`, `poses.csv` and
 `inputs/`. The fixed sets also retain their `images/` directories. The Mixed
 reference source snapshots and generation-history input remain in `mixed/inputs/`.
-No sets are merged and no scenarios are added or removed.

@@ -214,11 +214,6 @@ forced shutdown timeout. No extra outer tee pipeline is needed:
 GROUP=operator_B_1 INDEX=1 python3 scripts/record_quest_base.py
 ```
 
-CPU launcher checks cover indices 1, 2 and 25 in all four subgroups, invalid input rejection,
-unique run creation, host/container argument mapping, tee drain, and SIGINT/SIGTERM propagation
-through the real wrapper/relay with a mocked Docker executable. These checks do not launch PhysX,
-the GUI or Quest, and do not establish runtime validation of the new launcher.
-
 Plain `tee` is also supported for shutdown, but it may exit on SIGINT before final
 logs arrive. `MJ_RUN` prints a unique `/tmp/cyclo-mj-run-*.log` recovery log; the
 relay continues draining Compose output there if the pipe closes. `MJ_SIGNAL`
@@ -227,13 +222,6 @@ Python reached cooperative cleanup. `SHUTDOWN_WAIT stage=...` identifies delayed
 cleanup; `MJ_RUN_EXIT` records Compose's final return code in the recovery log.
 A native call which never returns can still prevent Python from handling signals;
 the relay does not claim to make such calls interruptible.
-
-CPU validation covers real process signals in a mocked Docker adapter for
-initialization, WAITING, RUNNING, tee/no-tee, and repeated interrupts. Separate
-fake-physics integration reopens actual HDF5 files and decodes real MP4s after a
-`signal_SIGINT` finalization, including incomplete-step trimming. Actual Isaac GUI
-and container exit require a fresh user-run validation; existing sessions are not
-modified or interrupted by installing this change.
 
 ## Wall-clock video playback
 

@@ -8,61 +8,39 @@
 
 **Original Framework:** https://github.com/ROBOTIS-GIT/cyclo_lab
 
-**Direct Toast Baseline:** https://github.com/badajhong/cyclo_lab
+**Direct Toast Baseline:** [badajhong/cyclo_lab](https://github.com/badajhong/cyclo_lab) ([commit `5f5086d`](https://github.com/badajhong/cyclo_lab/commit/5f5086d11f664494119086de30a9e925b12022ad))
 
-**Direct Toast Baseline Commit:** [`5f5086d11f664494119086de30a9e925b12022ad`](https://github.com/badajhong/cyclo_lab/commit/5f5086d11f664494119086de30a9e925b12022ad)
-
-An Isaac Sim toast preparation environment with Meta Quest bimanual teleoperation,
-gripper control and demonstration recording. It combines a simulated toast cycle,
+An Isaac Sim toast preparation environment that runs independently of VR, with
+optional Meta Quest bimanual teleoperation, gripper control and demonstration recording. It combines a simulated toast cycle,
 three reproducible scenario sets, and HDF5/video capture for reviewing attempts.
 Serving v2 succeeds when at least one heated slice is placed on the plate after
 pop-up, with the lever released and the required placement checks satisfied.
 See [task details](docs/TASK.md) and the [documentation index](docs/README.md).
 
-> **Pre-publication status:** keep this repository private until redistribution
-> rights for the included bread rack are established. Upload authorization is not
-> evidence of the copyright holder's permission. Fresh network installation,
-> GPU/GUI execution, live Quest control, recording and GPU replay remain unverified
-> in this review. See the [current publication review](docs/PREPUBLICATION_REVIEW.md).
+## Project lineage and features
 
-## Project lineage and scope
+Cyclo Lab supplies the robot integration, IK/control infrastructure and Isaac Lab
+recording foundation; the direct toast baseline supplies the toast environment.
+This project adapts toast cycle/success and replay behavior and adds Quest
+transport/recording integration, scenario selection and reproduction tools.
+The robot model, arm/gripper action code and standard recording foundation are
+reused from the baseline. See [provenance](docs/release/PROVENANCE.md) for source
+references and retained notices.
 
-The Cyclo Lab framework supplies the robot integration, IK/control infrastructure
-and Isaac Lab recording foundation. The direct toast baseline supplies the toast
-task foundation. Retained source headers and licenses identify their authors;
-this repository does not claim those components as original work.
-
-The project-specific toast development layer inherited from
-[cyclo-toast-teleop](https://github.com/kkkkkmj/cyclo-toast-teleop) includes the
-Quest workflow, toast serving/recording integration, three scenario corpora,
-selection and provenance/reproduction tools. These describe the project's
-additions and adaptations, not an independently verified per-author allocation.
-[Historical provenance](docs/release/PROVENANCE.md) records the available baseline
-evidence and its limits; the exact ROBOTIS upstream commit is not established.
-
-This repository preserves that distribution's Git history through
-`7fc8b5ebfa33de040f70cb5fa3552044f6e7c787`. The changes made here organize the
-existing corpora under `scenarios/`, adapt paths and historical reproduction,
-and improve documentation. They introduce no new layouts, control/task behavior,
-assets or recording format. See the [scenario guide](scenarios/README.md).
-
-The direct-baseline comparison confirms that `FFW_BG2.py`, the selected robot
-USD, `arm_action.py`, `gripper_action.py`, task `recorders.py` and the standard
-`record_demos.py` are reused unchanged. Toast cycle/success and replay code are
-adaptations. Quest transport/recording integration and scenario tools were added
-relative to that baseline; this does not establish exclusive authorship or a
-from-scratch simulation/recording framework. See the [contribution table](docs/PREPUBLICATION_REVIEW.md#attribution).
-
-## Requirements
+## Simulation requirements
 
 - Linux x86-64 with an X11 desktop, a suitable NVIDIA GPU/driver and NVIDIA Container Toolkit.
 - Docker with Compose v2, Git LFS, host Python 3.10+ and OpenSSL.
-- Meta Quest with Quest Browser, on a network that can reach the PC's HTTPS port.
 - RoboDojo downloads and network access to NVIDIA table/material assets.
 
 The Docker image is configured to use Isaac Sim **5.1.0**, Isaac Lab **2.3.0** and PyTorch **2.7.0**.
 The robot and bread rack are included; cloning does not install the host stack
 or download all external assets. See [asset setup](docs/ASSETS.md).
+
+## Optional VR requirements
+
+Meta Quest with Quest Browser, on a network that can reach the PC's HTTPS port.
+A headset is needed only for the optional teleoperation and Quest recording workflow.
 
 ## Installation
 
@@ -94,13 +72,12 @@ docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
 Keep both Compose files. The host checkout is mounted at `/workspace/cyclo_lab`
 and the image is `cyclo-toast-teleop:isaacsim-5.1.0`. These inherited Docker names
 are intentional; the GitHub repository and checkout are named `cyclo_lab_toast`.
-They can collide with an existing baseline deployment. Before building or running,
-inspect existing projects/images and use the [isolated validation procedure](docs/LIVE_VALIDATION.md)
-if the baseline environment is already present. The default Compose configuration
-uses host networking/IPC and all GPUs; a distinct container name alone does not
-isolate GPU load or ports.
+See [shared-host precautions](docs/TROUBLESHOOTING.md#docker-and-shared-hosts)
+before running alongside another deployment.
 
-## GUI preview
+## Standalone simulation without VR
+
+No headset or Quest server is required for this preview.
 
 Run in your desktop terminal. `echo "$DISPLAY"` and `echo "$XAUTHORITY"` show session values; keep those values when present. `:0` and `$HOME/.Xauthority` below are fallbacks, not universal desktop locations. If the cookie is elsewhere, set `XAUTHORITY` to that existing file. Do not disable X authentication globally.
 
@@ -117,7 +94,7 @@ bash scripts/run_mj.sh --gui scripts/tools/view_make_toast_scenario.py \
 
 This selects `toast_base_20261109_025`. `R` resets the selected layout. Close the preview before starting the recorder.
 
-## Quest connection and demonstration recording
+## Optional VR teleoperation and demonstration recording
 
 Terminal 1, in the checkout: replace `192.168.1.10` with the PC's LAN address (inspect `hostname -I` or `ip address`). Select an unused port reachable from Quest; the example uses 8766.
 
@@ -172,9 +149,9 @@ before starting another session.
 
 | Set | Robot left to right | Scenarios |
 |---|---|---:|
-| [Base](scenarios/fixed_tpb/README.md) | Toaster, plate, rack | 100 |
+| [Fixed TPB](scenarios/fixed_tpb/README.md) | Toaster, plate, rack | 100 |
 | [Mixed](scenarios/mixed/README.md) | Six object-order permutations | 100 |
-| [PTB](scenarios/fixed_ptb/README.md) | Plate, toaster, rack | 100 |
+| [Fixed PTB](scenarios/fixed_ptb/README.md) | Plate, toaster, rack | 100 |
 
 These are **300 initial layouts, not 300 recorded demonstrations**.
 See [scenario design and reproducibility](scenarios/README.md).
@@ -189,16 +166,16 @@ scenario metadata and `recording/` HDF5/video outputs. Keep the complete run.
 See [recording and playback](docs/RECORDING.md) for other scenario sets, directory
 structure, wall-clock video timing and replay commands.
 
-## Known limitations
+## Playback
 
-- Fresh-PC Docker/GPU/Quest end-to-end operation, headset casting and GPU replay
-  have not been validated for this release. CPU checks do not establish them.
-- Dynamic rack/bread settling and Isaac Sim remaining alive after Ctrl+C are
-  unresolved issues. See [troubleshooting](docs/TROUBLESHOOTING.md).
-- NVIDIA cloud dependency loading remains unverified. Docker includes some
-  dependency ranges and is not a fully locked build.
-- The 1:1 target mapping does not guarantee instantaneous robot tracking.
-  A successful episode alone does not establish training quality or replay fidelity.
+See [recording and playback](docs/RECORDING.md) for HDF5 inspection, saved-state
+video and action replay commands. Saved-state video and a successful episode do
+not by themselves establish action-replay fidelity or training quality.
+
+## Troubleshooting
+
+See [troubleshooting](docs/TROUBLESHOOTING.md) for asset loading, GUI setup,
+Quest pairing, dynamic settling and simulator shutdown.
 
 ## Attribution and licenses
 

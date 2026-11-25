@@ -55,18 +55,3 @@ The physics termination tensor is not changed by this labeling policy. Once an e
 a later stop command in WAITING cannot relabel it. HDF5 and MP4 recording, incomplete-step trimming,
 zero-sample sidecars, and WAITING → accepted X → reset behavior remain in place. An observed success
 label does not establish demonstration quality or replay fidelity.
-
-## Validation scope
-
-CPU tests execute the actual serving predicates with USD bread geometry, including each heated bread
-ID, wrong/unheated IDs, plate constraints, and success with non-standby arms, closed grippers and a
-raised lift. Radius tests include 30 mm, just below/at/above 40 mm, rotated/translated plate frames,
-and an accepted pose with part of the bread outline outside the plate. Lifecycle tests clear
-simulated termination state after capture to check reset-safe results,
-blocked/accepted starts, simultaneous failure/success/timeout, and recorder label consistency.
-Recorder integration tests use the pinned HDF5 implementation and real MP4 encoding/decoding with
-synthetic camera frames. HUD tests exercise both eye viewports, common status bounds, PC layout,
-REC plus SUCCESS, and stop/result persistence with mocked canvas/WebGL.
-
-These are CPU checks, not PhysX or Quest runtime validation. Headset optical readability and actual
-casting crop remain unverified. No running simulation or server was stopped or restarted.

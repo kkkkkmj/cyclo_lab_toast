@@ -180,12 +180,12 @@ group index, parent index, actual ID and manifest SHA256. Optional Quest `--reco
 HDF5 with **diagnostic=true** and the observed task success label with metadata and a manifest snapshot; it is not a verified
 successful training demonstration. Saved-state video also does not establish action-replay fidelity.
 
-## Validation
+## Usage limitations
 
-The supplied 100 IDs are unique, with 25 per group and 50 per operator. CPU checks matched all 200
-group/parent selections, 100 metadata round trips, 700 pose CSV rows, and 100 card entries.
-These checks do not establish PhysX stability, robot reachability or full toast-task success.
-The current rack's settling remains under diagnosis. See [release validation](../../docs/release/VALIDATION.md) for current checks; personal historical measurement reports are not distributed.
+Layout constraints and balanced assignments do not guarantee physical stability,
+robot reachability or collision-free manipulation. Inspect rack/bread settling
+before collection; see [troubleshooting](../../docs/TROUBLESHOOTING.md#scenario-settling-and-control).
+Overview cards show projected geometry, not simulator renders or collision meshes.
 
 ## Files
 

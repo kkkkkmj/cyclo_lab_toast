@@ -3,7 +3,7 @@
 > Historical baseline task/calibration reference. The original descriptions below
 > include the earlier shelf and success behavior; they are not the current
 > Serving v2 operation guide. See [current task behavior](../../../../../../docs/TASK.md)
-> and [current asset review](../../../../../../docs/PREPUBLICATION_REVIEW.md#licenses-and-assets).
+> and [asset setup](../../../../../../docs/ASSETS.md).
 
 Only these objects are taken from the official RoboDojo distribution:
 
