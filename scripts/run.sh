@@ -18,6 +18,6 @@ if [[ "${1:-}" == "--gui" ]]; then
     --volume "$MJ_XAUTHORITY:/tmp/mj.xauthority:ro")
 fi
 exec python3 scripts/tools/mj_signal_relay.py docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
-  -f docker/docker-compose.yaml -f docker/compose.mj.yaml --profile base \
+  -f docker/docker-compose.yaml -f docker/compose.toast.yaml --profile base \
   --mj-command "${MJ_DOCKER_OPTIONS[@]}" -w /workspace/cyclo_lab cyclo_lab \
   /isaac-sim/python.sh scripts/tools/mj_python.py "$@"

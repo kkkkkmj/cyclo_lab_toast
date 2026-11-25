@@ -66,7 +66,7 @@ Review NVIDIA's license terms before building; `docker/.env.base` sets `ACCEPT_E
 
 ```bash
 docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
-  -f docker/docker-compose.yaml -f docker/compose.mj.yaml --profile base build cyclo_lab
+  -f docker/docker-compose.yaml -f docker/compose.toast.yaml --profile base build cyclo_lab
 ```
 
 Keep both Compose files. The host checkout is mounted at `/workspace/cyclo_lab`
@@ -87,7 +87,7 @@ export REPO="$PWD"
 export DISPLAY="${DISPLAY:-:0}"
 export XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
 test -f "$XAUTHORITY"
-bash scripts/run_mj.sh --gui scripts/tools/view_make_toast_scenario.py \
+bash scripts/run.sh --gui scripts/tools/view_make_toast_scenario.py \
   --scenario_manifest scenarios/fixed_tpb/manifest.json \
   --scenario_group operator_B_1 --group_index 1 --steps 0
 ```

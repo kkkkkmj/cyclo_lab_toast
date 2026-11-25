@@ -88,7 +88,7 @@ class BaseRecordingLaunchTests(unittest.TestCase):
         first, second = launch.build_plan('operator_B_1', 1), launch.build_plan('operator_B_1', 1)
         self.assertNotEqual(first['host_run'], second['host_run'])
         cmd = first['command']
-        self.assertEqual(cmd[:4], ['bash', 'scripts/run_mj.sh', '--gui', 'scripts/quest_diagnostic/teleop_toast.py'])
+        self.assertEqual(cmd[:4], ['bash', 'scripts/run.sh', '--gui', 'scripts/quest_diagnostic/teleop_toast.py'])
         self.assertNotIn('--headless', cmd)
         for flag in ('--keep-open', '--enable-grippers', '--no-home-limits', '--no-speed-limits'):
             self.assertIn(flag, cmd)

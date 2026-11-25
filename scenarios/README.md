@@ -59,7 +59,7 @@ Each set contains `operator_A` and `operator_B`, with 50 layouts each. Four grou
 Run from the repository root after completing [installation](../README.md):
 
 ```bash
-bash scripts/run_mj.sh --gui scripts/tools/view_make_toast_scenario.py \
+bash scripts/run.sh --gui scripts/tools/view_make_toast_scenario.py \
   --scenario_manifest scenarios/fixed_tpb/manifest.json \
   --scenario_group operator_B_1 --group_index 1 --steps 0
 ```
@@ -112,9 +112,9 @@ layout **only in a temporary workspace**, overlays checksum-verified archived
 sources, and writes generated output to a separate empty directory:
 
 ```bash
-MJ_REBUILD=$(mktemp -d /tmp/toast-ptb-rebuild.XXXXXX)
+SCENARIO_REBUILD_DIR=$(mktemp -d /tmp/toast-ptb-rebuild.XXXXXX)
 python3 scripts/tools/reproduce_toast_generation.py \
-  --set scenarios/fixed_ptb --output "$MJ_REBUILD"
+  --set scenarios/fixed_ptb --output "$SCENARIO_REBUILD_DIR"
 ```
 
 Use `scenarios/fixed_tpb` for the other fixed set. Historical `--set` names remain

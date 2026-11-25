@@ -148,8 +148,8 @@ def select_vr(out,data,rows,manifest):
         reasons=chosen[e['id']];selected.append(dict(scenario_id=e['id'],group=e['scenario_group'],group_index=e['group_index'],reasons=reasons))
         selection=f"--scenario_manifest {rel} --scenario_group {e['scenario_group']} --group_index {e['group_index']}"
         lines += [f"## {e['id']} · {e['scenario_group']} #{e['group_index']}",'', '; '.join(reasons),'','```bash',
-            f'bash scripts/run_mj.sh --gui scripts/tools/view_make_toast_scenario.py {selection}',
-            f'bash scripts/run_mj.sh --gui scripts/quest_diagnostic/teleop_toast.py --bridge-dir /workspace/cyclo_lab/logs/quest_precollection_v20261109 {selection} --enable-grippers --keep-open','```','',
+            f'bash scripts/run.sh --gui scripts/tools/view_make_toast_scenario.py {selection}',
+            f'bash scripts/run.sh --gui scripts/quest_diagnostic/teleop_toast.py --bridge-dir /workspace/cyclo_lab/logs/quest_precollection_v20261109 {selection} --enable-grippers --keep-open','```','',
             '- [ ] Check support for all 4 initial slices, table clearance, and robot standby; record tested bread ID and hand/slot',
             '- [ ] Bread grasp: verify finger approach, contact, and stable grasp',
             '- [ ] Toaster insertion: verify correct loading without collisions with nearby objects/robot',

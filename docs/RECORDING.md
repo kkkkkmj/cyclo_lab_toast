@@ -40,12 +40,12 @@ python3 scripts/quest_diagnostic/convert_video_wallclock.py /path/to/completed/e
 
 It creates `video_wallclock.mp4` and separate sidecars; it refuses existing outputs. Legacy timestamps cannot recover an unknown exact start/end or dropped images. See [recording details](../scripts/quest_diagnostic/RECORDING.md) and [diagnostics](../scripts/quest_diagnostic/DIAGNOSTICS.md).
 
-For inspection or playback, run the following commands from the **host repository directory**. Set `DATASET` to the **absolute container path** of your HDF5 file: replace `/workspace/cyclo_lab/recordings/...` with the matching path under that container mount. `scripts/run_mj.sh` runs the Python script inside the container; do not run the wrapper from a container shell.
+For inspection or playback, run the following commands from the **host repository directory**. Set `DATASET` to the **absolute container path** of your HDF5 file: replace `/workspace/cyclo_lab/recordings/...` with the matching path under that container mount. `scripts/run.sh` runs the Python script inside the container; do not run the wrapper from a container shell.
 
 ```bash
 export DATASET=/workspace/cyclo_lab/recordings/quest_base_B1/episode_001/run_DATE_TIME_UUID/recording/dataset.hdf5
-bash scripts/run_mj.sh scripts/tools/toast_recording_metadata.py "$DATASET"
-bash scripts/run_mj.sh --gui scripts/imitation_learning/isaaclab_recorder/replay_demos.py \
+bash scripts/run.sh scripts/tools/toast_recording_metadata.py "$DATASET"
+bash scripts/run.sh --gui scripts/imitation_learning/isaaclab_recorder/replay_demos.py \
   --dataset_file "$DATASET" --enable_cameras
 ```
 

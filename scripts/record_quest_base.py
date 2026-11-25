@@ -42,7 +42,7 @@ def build_plan(group, index, root=ROOT):
     relative = Path('recordings') / ('quest_base_' + tag) / f'episode_{index:03d}' / name
     host_run, container_run = root / relative, CONTAINER_ROOT / relative
     command = [
-        'bash', 'scripts/run_mj.sh', '--gui', 'scripts/quest_diagnostic/teleop_toast.py',
+        'bash', 'scripts/run.sh', '--gui', 'scripts/quest_diagnostic/teleop_toast.py',
         '--keep-open', '--enable-grippers', '--control-profile', 'practice',
         '--scenario_manifest', str(MANIFEST), '--scenario_group', group, '--group_index', str(index),
         '--bridge-dir', str(CONTAINER_ROOT / BRIDGE),

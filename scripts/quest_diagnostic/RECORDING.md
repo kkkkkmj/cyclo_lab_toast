@@ -16,7 +16,7 @@ package dependencies and provides the FFmpeg binary. Rebuild the separate image 
 export REPO=/path/to/cyclo_lab_toast
 cd "$REPO"
 docker compose --project-name cyclo-toast-teleop --env-file docker/.env.base \
-  -f docker/docker-compose.yaml -f docker/compose.mj.yaml --profile base build cyclo_lab
+  -f docker/docker-compose.yaml -f docker/compose.toast.yaml --profile base build cyclo_lab
 ```
 
 The commands below create a separate transient container with this checkout mounted at
@@ -141,7 +141,7 @@ mapping only the run's basename would lose the scenario directory and is incorre
 | `recording/episode_000001/frames.jsonl`, `video.json` | Frame-to-sample mapping, timing, dropped frames and encoder errors |
 | `recording/record_audit/` | Diagnostic reset/timing evidence, not additional training demonstrations |
 | `diagnostic.jsonl`, `run.log` | Control/input trace and terminal output, separate from HDF5/MP4 |
-| `exit_code` | `run_mj.sh`/Compose exit status after cleanup; not an episode success label |
+| `exit_code` | `run.sh`/Compose exit status after cleanup; not an episode success label |
 | `launch.json` | Resolved manifest hash, scenario/group/index, full command and host/container paths |
 | `launcher_result.json`, `run.lock` | Relay/logging exit results and a lock held for the launch lifetime; lock-file presence alone does not mean a run is active |
 
@@ -173,7 +173,7 @@ The explicit conversion also works for migrated runs without `launch.json`:
 ```bash
 export RUN_DIR="$REPO/recordings/quest_base_B1/episode_001/run_DATE_TIME_UNIQUE"
 CONTAINER_RUN=$(python3 -c 'import sys; from pathlib import Path; print(Path("/workspace/cyclo_lab") / Path(sys.argv[2]).resolve().relative_to(Path(sys.argv[1]).resolve()))' "$REPO" "$RUN_DIR")
-bash scripts/run_mj.sh scripts/tools/toast_recording_metadata.py \
+bash scripts/run.sh scripts/tools/toast_recording_metadata.py \
   "$CONTAINER_RUN/recording/dataset.hdf5"
 ```
 
@@ -189,7 +189,7 @@ above enables them; no new runtime option or control threshold is required.
 
 ## Terminal interrupt forwarding
 
-`run_mj.sh` now owns a uniquely named transient Compose container and uses `-T`
+`run.sh` now owns a uniquely named transient Compose container and uses `-T`
 independently of whether stdout is a terminal or a tee pipe. The host relay keeps
 Compose in a separate session; a terminal SIGINT/SIGTERM is sent with `docker exec`
 to the exact Python PID registered by `mj_python.py` inside that container. Requests
@@ -206,7 +206,7 @@ five seconds; this identifies a stuck codec, environment close, or Kit shutdown.
 No forced timeout kills the process or discards buffered recordings.
 
 The host launcher uses `tee -i` and separate process sessions to keep the terminal log open during
-Ctrl+C. It forwards the first SIGINT/SIGTERM to its own `run_mj.sh` relay, waits for cleanup and log
+Ctrl+C. It forwards the first SIGINT/SIGTERM to its own `run.sh` relay, waits for cleanup and log
 drain, then records the simulation exit status. It does not signal existing containers or set a
 forced shutdown timeout. No extra outer tee pipeline is needed:
 

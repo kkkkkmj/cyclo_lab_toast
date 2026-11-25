@@ -23,7 +23,7 @@ asset = root/'source/cyclo_lab/data/objects/bread_slot/rack.usda'
 assert asset.is_file(), asset
 print(f'MJ_CHECKOUT={root}\nMJ_CODE={spec.origin}\nMJ_RACK={asset}', flush=True)
 if len(sys.argv) < 2:
-    raise SystemExit('Usage: scripts/run_mj.sh scripts/<script>.py [arguments]')
+    raise SystemExit('Usage: scripts/run.sh scripts/<script>.py [arguments]')
 script = (root/sys.argv[1]).resolve()
 assert script.is_relative_to(root), script
 sys.argv = [str(script), *sys.argv[2:]]
